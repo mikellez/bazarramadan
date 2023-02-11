@@ -1,0 +1,38 @@
+version: '3.2'
+
+services:
+  app:
+    build: ./docker
+    image: bazarramadan/platselangor
+    ports:
+      - "8080:80"
+    volumes:
+      # Mount source-code for development
+      - ./:/var/www
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3308:3306"
+    volumes:
+      # - mysql-data:/var/lib/mysql
+      - ./docker/mysql/mysql-config.cnf:/etc/mysql/conf.d/config.cnf
+      - ./docker/data/mysql:/var/lib/mysql
+      - ./docker/mysql/logs:/var/log/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bazarramadan
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+
+  phpmyadmin: 
+    image: phpmyadmin/phpmyadmin:5 
+    ports: 
+      - 3306:80 
+    environment: 
+      PMA_HOST: mysql 
+    depends_on: 
+      - mysql 
+
+volumes:
+  mysql-data:
