@@ -1,5 +1,22 @@
+@font-face {
+    font-family: 'Pacifico';
+    src: url('./fonts/Pacifico-Regular.ttf') format('truetype');
+    font-weight: 600;
+}
+
 main > .container {
-    padding: 70px 15px 20px;
+    padding: 70px 283px 20px;
+}
+
+main > .container-add-listing {
+    padding: 70px 260px 20px;
+    margin-left: 120px;
+}
+
+@media(max-width:767px) {
+    main > .container {
+        padding: 70px 0px 20px;
+    }
 }
 
 .footer {
@@ -87,4 +104,52 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+.add-listing-nav {
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 15px;
+    height: 100%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+header {
+    border-bottom: 3px #901B1F solid;
+}
+
+nav {
+    background-image: linear-gradient(to right,#FDF838,#A2181B)!important;
+    height: 86px;
+}
+
+.navbar-brand img{
+    width: 100px;
+}
+
+.site-heading {
+    color: #901b1f;
+    font-family: "Pacifico",Sans-serif;
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.footer {
+    background: #ff8e1a;
+    height: 80px;
+}
+
+.card {
+    background: #fff;
+    box-shadow: 0 1px 4px #00000012;
+    border-radius: 5px;
+}
+
+.card-header {
+    background: #fff;
 }

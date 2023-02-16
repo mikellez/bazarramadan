@@ -17,9 +17,13 @@ $this->title = 'Login';
 
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'username', [
+                'template'=>'{label}{input}{error}'
+            ])->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'password', [
+                'template'=>'{label}{input}{error}'
+            ])->passwordInput() ?>
 
             <?= $form->field($model, 'rememberMe')->checkbox() ?>
 

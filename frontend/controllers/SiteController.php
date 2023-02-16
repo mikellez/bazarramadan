@@ -46,7 +46,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['get'],
                 ],
             ],
         ];
@@ -75,7 +75,48 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        //$this->layout = 'main';
+        $model = new LoginForm();
+        if(Yii::$app->request->post()) {
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                Yii::$app->session->setFlash('success', '
+                    <div class="mt-3 alert alert-success" role="alert">
+                        <p><b>Tahniah!</b> MyKad / Kad Pengenalan anda: '.Yii::$app->user->identity->ic_no.' telah berdaftar dengan PBT. Anda layak memohon.</p>
+                    </div>
+                    ');
+                //return $this->goBack();
+                return $this->redirect('/dashboard');
+            } else {
+                $model->ic_no = '';
+
+                Yii::$app->session->setFlash('error', '
+                    <div class="mt-3 alert alert-danger" role="alert">
+                        <p><b>Maaf!</b> Nombor MyKad/Kad Pengenalan tidak berdaftar dengan mana-mana PBT.</p>
+                    </div>
+                ');
+
+                return $this->render('index', [
+                    'model' => $model,
+                ]);
+            }
+
+        }
+
+        return $this->render('index', [
+            'model' => $model
+        ]);
+    }
+
+    /**
+     * Displays add lisiting.
+     *
+     * @return mixed
+     */
+    public function actionAddListing()
+    {
+        $this->layout = 'empty';
+        return $this->render('add-listing');
     }
 
     /**

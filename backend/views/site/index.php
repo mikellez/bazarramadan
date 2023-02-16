@@ -1,53 +1,162 @@
 <?php
+use yii\helpers\Html;
+use yii\grid\GridView;
 
 /** @var yii\web\View $this */
 
-$this->title = 'My Yii Application';
+$this->title = 'Bazar Listing';
+
+$gridColumns = [
+    ['class' => 'yii\grid\SerialColumn'],
+    [
+        //'label'=>'BRAND NAME',
+        'attribute'=>'shop_name',
+        'headerOptions' => [
+            'class'=>'text-center'
+        ],
+        'contentOptions' => [
+            'class'=>'text-center'
+        ]
+    ],
+    [
+        'attribute'=>'cover_image',
+        'headerOptions'=>[
+            'class'=>'text-center'
+        ],
+        'contentOptions' => [
+            'style'=>'width:100px'
+        ],
+        'content' => function($model) {
+            /**  @var \common\models\Product $model */
+            return Html::img($model->getCoverImageUrl(), ['style'=> 'width: 50px']);
+        },
+    
+    ],
+    [
+        'attribute'=>'tagline',
+        'headerOptions' => [
+            'class'=>'text-center'
+        ],
+        'contentOptions' => [
+            'class'=>'text-center'
+        ]
+    ],
+    [
+        'attribute'=>'whatsapp_no',
+        'headerOptions' => [
+            'class'=>'text-center'
+        ],
+        'contentOptions' => [
+            'class'=>'text-center'
+        ]
+    ],
+    [
+        'label'=> 'PBT',
+        'attribute'=> 'pbt_location_id',
+        'value'=> 'pbtLocation.code',
+        'headerOptions'=>[
+            'class'=>'text-center'
+        ],
+        'contentOptions'=>[
+            'class'=>'text-center',
+        ]
+    ],
+    [
+        'label'=> 'Location',
+        'attribute'=> 'bazar_location_id',
+        'value'=> 'bazarLocation.name',
+        'headerOptions'=>[
+            'class'=>'text-center'
+        ],
+        'contentOptions'=>[
+            'class'=>'text-center',
+        ]
+    ],
+    [
+        'attribute' => 'status',
+        'filter' => Html::activeDropDownList($searchModel, 'status', \common\models\Bazar::getStatusList(), [
+            'class' => 'form-control',
+            'prompt' => 'All'
+        ]),
+        'format' => 'orderStatus',
+        'headerOptions'=>[
+            'class'=>'text-center'
+        ],
+        'contentOptions'=>[
+            'class'=>'text-center'
+        ]
+    ],
+    [
+        'attribute'=> 'status_by',
+        'value'=> 'statusBy.username',
+        'headerOptions'=>[
+            'class'=>'text-center',
+        ],
+        'contentOptions'=>[
+            'class'=>'text-center',
+        ]
+    ],
+    [
+        'class' => 'yii\grid\ActionColumn',
+        'contentOptions'=>[
+            'class'=>'text-right'
+        ],
+        'template' => '
+            {approve} {reject} {delete}
+        ',
+        'buttons'=>[
+            'approve' => function($url,$model) { 
+                if($model->status == $model::STATUS_PENDING) {
+                    return  Html::a('<span class="fa fa-check text-success"></span>', ['approve', 'id'=>$model->id], [
+                        'title' => Yii::t('app', 'Approve'),
+                        'data-confirm' => 'Are you sure you want to approve bazar for this?',
+                    ]);
+                } 
+            },
+            'reject' => function($url,$model) { 
+                if($model->status == $model::STATUS_PENDING) {
+                    return  Html::a('<span class="fa fa-times text-danger"></span>', ['reject', 'id'=>$model->id], [
+                        'title' => Yii::t('app', 'Reject'),
+                        'data-confirm' => 'Are you sure you want to reject bazar for this?',
+                    ]);
+                } 
+            },
+        ]
+    ],
+    
+    ];
+    
+    
+    $gridColumnsExport = [
+    ];
 ?>
-<div class="site-index">
+<div class="dashboard-index">
 
     <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4">Congratulations!</h1>
+        <!--<a class="btn btn-sm btn-warning float-right" href="/add-listing">Daftar Bazar +</a>-->
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <!--<h1 class="display-4">Bazar Listing</h1>-->
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <?php if($modelPbtLocation !== null):?>
+        <p class="lead"><?= $modelPbtLocation->name?> (<?= $modelPbtLocation->code?>)</p>
+        <?php else:?>
+        <p class="lead">Semua Senarai PBT</p>
+        <?php endif;?>
+
+        <!--<div class="card card-outline card-primary">
+        <div class="card-header">
+        <h3 class="card-title"><?= Html::encode($this->title) ?></h3>-->
+
+        <!-- /.card-header -->
+        <!--<div class="card-body p-0">-->
+            <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm'],
+            'columns' => $gridColumns
+        ]); ?> 
+        <!--</div>-->
+        <!-- /.card-body -->
     </div>
 
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
 </div>

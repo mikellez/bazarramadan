@@ -2,52 +2,70 @@
 
 /** @var yii\web\View $this */
 
+use yii\helpers\Html;
+use yii\bootstrap4\ActiveForm;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
     <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4">Congratulations!</h1>
+        <h1 class="site-heading display-4">Bazar Ramadan</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+        <div class="lead mb-3">
+            <img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>" width="200px"/>
         </div>
 
+        <p class="">SILA MASUKKAN NOMBOR KAD PENGENALAN ANDA</p>
+
+        <hr class="mt-5" style="border-top: 2px solid #d39e00">
+
+        <p align="left" style="font-style: italic;">Contoh: 800323105512</p>
+
+        <p align="left" class="text-sm" style="font-style: italic;">* Hanya peniaga yang mempunyai permit bazar Ramadan dari Pihak Berkuasa Tempatan layak membuka kedai di Bazar Ramandan PLATS.</p>
+
+        <div class="">
+        </div>
+
+        <?php $form = ActiveForm::begin([
+            'id' => 'login-form',
+            'fieldConfig' => [
+                'template' => "{input}"
+            ],
+        ]); ?>  
+
+        <?= $form->field($model, 'ic_no', [
+            'options'=>[
+                'class'=>'',
+            ],
+            
+        ])->textInput([ 'autofocus' => true, 'placeholder'=>'No Kad Pengenalan']) ?>
+
+        <div class="d-flex justify-content-center">
+            <!--<a class="btn btn-md btn-success mt-3" href="/">Semak Kelayakan</a>-->
+            <?= Html::submitButton('Semak Kelayakan', ['class' => 'btn btn-sm btn-success mt-3', 'style'=>'background: #f37a20; border-color: #f37a20;', 'name' => 'login-button']) ?>
+        </div>
+
+        <?= Yii::$app->session->getFlash('success')?>
+        <?= Yii::$app->session->getFlash('error')?>
+
+        <?php ActiveForm::end(); ?>
+
+        <div class="d-flex justify-content-center">
+            <u class="mt-3">Soalan Lazim</u>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p class="mt-3 text-muted">PLATS adalah sebuah Inisiatif Kerajaan Selangor di bawah</p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <img src="<?=Yii::$app->params['backendUrl'].'/storage/mbi_pnsb_logo@2x.png'?>" width="220px"/>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p class="mt-3 text-muted">dengan kerjasama Pihak Berkuasa Tempatan Selangor</p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <img src="<?=Yii::$app->params['backendUrl'].'/storage/pbt_logo@2x.png'?>" width="400px"/>
+        </div>
     </div>
+
 </div>

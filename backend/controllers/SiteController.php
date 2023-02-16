@@ -2,12 +2,17 @@
 
 namespace backend\controllers;
 
-use common\models\LoginForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\web\ForbiddenHttpException;
+
+use backend\models\LoginForm;
+use common\models\search\BazarSearch;
+use common\models\Bazar;
+use common\models\PbtLocation;
 
 /**
  * Site controller
@@ -28,7 +33,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'approve', 'reject'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -37,7 +42,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    //'logout' => ['post'],
                 ],
             ],
         ];
@@ -55,6 +60,61 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionApprove($id) {
+        $model = Bazar::findOne($id);
+        $model->status = $model::STATUS_APPROVE;
+        $model->status_by = Yii::$app->user->id;
+        $model->status_at = time();
+        $model->save();
+
+        Yii::$app->session->setFlash('success', '
+            <div class="mt-3 alert alert-success" role="alert">
+                <p><b>Approved!</b> Bazar is approve for '.$model->shop_name.'!</p>
+            </div>
+            ');
+
+		/*$searchModel = new BazarSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
+        $dataProvider->setPagination(['pageSize' => 10]);
+		$dataProvider->query->andWhere(['=', 'active', 1]);*/
+
+        $this->redirect('index');
+
+        /*return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);*/
+    }
+
+    public function actionReject($id) {
+        $model = Bazar::findOne($id);
+        $model->status = $model::STATUS_REJECT;
+        $model->status_by = Yii::$app->user->id;
+        $model->status_at = time();
+        $model->save();
+
+		$searchModel = new BazarSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
+        $dataProvider->setPagination(['pageSize' => 10]);
+		$dataProvider->query->andWhere(['=', 'active', 1]);
+
+        Yii::$app->session->setFlash('success', '
+            <div class="mt-3 alert alert-danger" role="alert">
+                <p><b>Rejected!</b> Bazar is rejected for '.$model->shop_name.'!</p>
+            </div>
+            ');
+
+        $this->redirect('index');
+
+        /*return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);*/
+
+    }
+
     /**
      * Displays homepage.
      *
@@ -62,7 +122,34 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $id = Yii::$app->request->get('id');
+
+        $modelPbtLocation = NULL;
+        if($id>0) {
+            $modelPbtLocation = PbtLocation::findOne($id);
+            if(!Yii::$app->user->can('canView'.$modelPbtLocation->code))
+                throw new ForbiddenHttpException('You are not authorized to access this page.');
+        }
+
+		$searchModel = new BazarSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
+        $dataProvider->setPagination(['pageSize' => 10]);
+		$dataProvider->query->andWhere(['=', 'active', 1]);
+        if(!Yii::$app->user->can('superAdmin') || $id > 0)
+		    $dataProvider->query->andWhere(['=', 'pbt_location_id', $id]);
+
+        if(Yii::$app->user->identity->pbt_location_id) {
+            $modelPbtLocation = PbtLocation::findOne(Yii::$app->user->identity->pbt_location_id);
+		    $dataProvider->query->andWhere(['=', 'pbt_location_id', Yii::$app->user->identity->pbt_location_id]);
+        }
+
+
+        return $this->render('index', [
+            'modelPbtLocation'=>$modelPbtLocation,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

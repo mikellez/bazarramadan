@@ -19,6 +19,7 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'loginUrl' => ['/site/index'],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
@@ -36,14 +37,16 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        'formatter' => [
+            'class'=> \common\i18n\Formatter::class,
+            'datetimeFormat' => 'php:d/m/Y H:i'
+        ]
     ],
     'params' => $params,
 ];

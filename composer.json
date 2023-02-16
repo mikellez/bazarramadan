@@ -17,7 +17,16 @@
         "php": ">=5.6.0",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap4": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+        "kartik-v/yii2-widget-select2": "dev-master",
+        "kartik-v/yii2-widget-fileinput": "dev-master",
+        "kartik-v/yii2-grid": "dev-master",
+        "wbraganca/yii2-dynamicform": "*",
+        "kartik-v/yii2-widget-depdrop": "dev-master",
+        "bilginnet/yii2-cropper": "dev-master",
+        "budyaga/yii2-cropper": "*",
+        "rmrevin/yii2-fontawesome": "2.10.*",
+        "2amigos/yii2-croppie-widget": "1.0.x-dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -28,7 +37,9 @@
         "codeception/module-yii2": "^1.0",
         "codeception/module-filesystem": "^1.0",
         "codeception/verify": "~0.5.0 || ~1.1.0",
-        "symfony/browser-kit": ">=2.7 <=4.2.4"
+        "symfony/browser-kit": ">=2.7 <=4.2.4",
+        "symfony/css-selector": "4.4.37 as 3.0.0",
+        "symfony/dom-crawler": "4.4.39 as 3.0.0"
     },
     "config": {
         "process-timeout": 1800,

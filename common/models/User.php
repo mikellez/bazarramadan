@@ -87,6 +87,17 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Finds user by ic_no
+     *
+     * @param string $ic_no
+     * @return static|null
+     */
+    public static function findByIcNo($ic_no)
+    {
+        return static::findOne(['ic_no' => $ic_no, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
      * Finds user by password reset token
      *
      * @param string $token password reset token
@@ -209,5 +220,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * Gets query for [[PbtLocation]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPbtLocation()
+    {
+        return $this->hasOne(PbtLocation::class, ['id' => 'pbt_location_id']);
     }
 }
