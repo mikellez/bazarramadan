@@ -506,55 +506,66 @@ $js = <<<JS
             $('#uploadimageModal').modal('show');
         });
 
-        $('.crop_image').click(function(event){
-            const dataTransfer = new DataTransfer();
-            $( "#image_demo .croppie-container" ).each(function( index ) {
-                $(this).croppie('result', {
+        async function getFile(e) {
+            let url = await getCroppieResult(e);
+            let image_array1 = url.split(';')[0];
+            let extensionAll = image_array1.split(':')[1];
+            let extension = extensionAll.split('/')[1];
+
+            return new Promise((resolve)=> {
+                fetch(url)
+                .then(res => res.blob())
+                .then(blob => {
+                    console.log(extension)
+                    const file = new File([blob], "image_"+Date.now()+'.'+extension,{ type: extensionAll })
+                    
+                    return resolve(file);
+
+                })
+
+            })
+        }
+
+        async function getCroppieResult(e) {
+            return new Promise((resolve)=> {
+                $(e).croppie('result', {
                     type: 'canvas',
                     size: 'viewport'
                 }).then(function(response){
                     console.log(response);
-                    let image_array1 = response.split(';')[0];
-                    let extensionAll = image_array1.split(':')[1];
-                    let extension = extensionAll.split('/')[1];
 
-                    const url = response;
-                    fetch(url)
-                    .then(res => res.blob())
-                    .then(blob => {
-                        console.log(extension)
-                        const file = new File([blob], "image_"+Date.now()+'.'+extension,{ type: extensionAll })
-                        /*const file = new File(['Hello World!'], 'myFile.txt', {
-                            type: 'text/plain',
-                            lastModified: new Date(),
-                        });*/
-                        /*const dT = new DataTransfer();
-                        dT.items.add(new File(['foo'], 'programmatically_created.txt'));
-                        document.getElementById('uploadform-imagefile').files = dT.files;*/
-
-                        const fileInput = document.getElementById('uploadform-imagefile');
-                        //const fileInput = document.querySelector('input[type="file"]');
-
-                        systemClick = true;
-                        dataTransfer.items.add(file);
-                        fileInput.files = dataTransfer.files;
-                        console.log(fileInput.files);
-                        fileInput.dispatchEvent(new Event("change", { "bubbles": true }));
-                        console.log(file, fileInput, fileInput.files)
-                        $('#uploadimageModal').modal('hide');
-                    })
-                    /*$.ajax({
-                    url:"/add-listing/upload",
-                    type: "POST",
-                    data:{"image": response},
-                    success:function(data)
-                    {
-                        $('#uploadimageModal').modal('hide');
-                        $('#uploaded_image').html(data);
-                    }
-                    });*/
+                    return resolve(response);
                 })
-            });
+
+            })
+        }
+
+        async function getFiles() {
+            const files = await Promise.all($( "#image_demo .croppie-container" ).map(async function( index ) {
+                return await getFile(this);
+            }));
+
+            return files;
+        }
+
+        $('.crop_image').click(async function(event){
+            const dataTransfer = new DataTransfer();
+            const fileInput = document.getElementById('uploadform-imagefile');
+            let file=[];
+            
+            systemClick = true;
+            files = await getFiles();
+
+            for(let i=0;i<files.length;i++)
+                dataTransfer.items.add(files[i]);
+
+            fileInput.files = dataTransfer.files;
+            fileInput.dispatchEvent(new Event("change", { "bubbles": true }));
+
+            $('#uploadimageModal').modal('hide');
+
+            console.log(fileInput.files);
+            console.log(file, fileInput, fileInput.files)
         });
     });  
 
