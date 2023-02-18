@@ -46,13 +46,13 @@ AppAsset::register($this);
                 ?>
 				<ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="/site/index"><i class="fa fa-user fa-lg"></i>
+                        <a class="nav-link" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/index"><i class="fa fa-user fa-lg"></i>
                         <span class="identity">&nbsp; <?= Yii::$app->user->identity->username?></span></a>
                     </li>
                 <?php foreach($pbt_location as $location):?>
                     <?php if(Yii::$app->user->can('canView'.$location->code)):?>
                     <li class="nav-item nav-item-child">
-                        <a class="nav-link <?= $location->id == Yii::$app->request->get('id') ? 'active' : ''?>" href="/site/index?id=<?= $location->id?>">
+                        <a class="nav-link <?= $location->id == Yii::$app->request->get('id') ? 'active' : ''?>" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/index?id=<?= $location->id?>">
                         <i class="fa fa-caret-right"></i> &nbsp;
                         <?= $location->code?> <span class="sr-only">(current)</span> 
                         </a>
