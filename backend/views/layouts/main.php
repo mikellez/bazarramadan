@@ -31,7 +31,7 @@ AppAsset::register($this);
 	<!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
 	<ul class="navbar-nav px-3" style="flex-direction: row">
 		<li class="nav-item text-nowrap">
-			<a class="nav-link pl-3" href="/site/logout">Logout</a>
+			<a class="nav-link pl-3" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/logout">Logout</a>
 		</li>
 	</ul>
 </nav>
