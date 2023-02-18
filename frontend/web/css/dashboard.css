@@ -91,3 +91,30 @@ body {
   
   .border-top { border-top: 1px solid #e5e5e5; }
   .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+  .navbar {
+	border-bottom: 3px #901B1F solid;
+    background-image: linear-gradient(to right,#FDF838,#A2181B)!important;
+    height: 86px;
+  }
+
+	.navbar-brand img{
+		width: 100px;
+	}
+
+	.nav {
+		margin-top: 20px;
+	}
+
+	.sidebar-sticky {
+		border-right: 1px #901B1F solid;
+	}
+
+	.nav-link .identity {
+		color:#901B1F !important;
+		font-size: 16px;
+	}
+
+	.nav-link i {
+		color:#901B1F;
+	}

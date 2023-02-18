@@ -1,90 +1,141 @@
-main > .container {
-    padding: 70px 15px 20px;
-}
 
-.footer {
-    background-color: #f5f5f5;
-    font-size: .9em;
-    height: 60px;
-}
+body {
+	font-size: .875rem;
+  }
+  
+  .feather {
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+  }
+  
+  /*
+   * Sidebar
+   */
+  
+  .sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100; /* Behind the navbar */
+	padding: 0;
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  }
+  
+  .sidebar-sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 48px; /* Height of navbar */
+	height: calc(100vh - 48px);
+	padding-top: .5rem;
+	overflow-x: hidden;
+	overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  }
+  
+  .sidebar .nav-link {
+	font-weight: 500;
+	color: #333;
+  }
+  
+  .sidebar .nav-link .feather {
+	margin-right: 4px;
+	color: #999;
+  }
+  
+  .sidebar .nav-link.active {
+	color: #007bff;
+  }
+  
+  .sidebar .nav-link:hover .feather,
+  .sidebar .nav-link.active .feather {
+	color: inherit;
+  }
+  
+  .sidebar-heading {
+	font-size: .75rem;
+	text-transform: uppercase;
+  }
+  
+  /*
+   * Navbar
+   */
+  
+  .navbar-brand {
+	padding-top: .75rem;
+	padding-bottom: .75rem;
+	font-size: 1rem;
+	background-color: rgba(0, 0, 0, .25);
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+  }
+  
+  .navbar .form-control {
+	padding: .75rem 1rem;
+	border-width: 0;
+	border-radius: 0;
+  }
+  
+  .form-control-dark {
+	color: #fff;
+	background-color: rgba(255, 255, 255, .1);
+	border-color: rgba(255, 255, 255, .1);
+  }
+  
+  .form-control-dark:focus {
+	border-color: transparent;
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+  }
+  
+  /*
+   * Utilities
+   */
+  
+  .border-top { border-top: 1px solid #e5e5e5; }
+  .border-bottom { border-bottom: 1px solid #e5e5e5; }
 
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
-}
+  .navbar {
+	border-bottom: 3px #901B1F solid;
+    background-image: linear-gradient(to right,#FDF838,#A2181B)!important;
+    /*height: 86px;*/
+  }
 
-.not-set {
-    color: #c55;
-    font-style: italic;
-}
+	.navbar-brand img{
+		width: 100px;
+	}
 
-/* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
-    content: '';
-    left: 3px;
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border: solid 5px transparent;
-    margin: 4px 4px 2px 4px;
-    background: transparent;
-}
+	.nav {
+		margin-top: 20px;
+	}
 
-a.asc:after {
-    border-bottom: solid 7px #212529;
-    border-top-width: 0;
-}
+	.sidebar-sticky {
+		border-right: 1px #901B1F solid;
+        /*padding: 42px 0 0 38px;*/
+	}
 
-a.desc:after {
-    border-top: solid 7px #212529;
-    border-bottom-width: 0;
-}
+	.nav-link .identity {
+		color:#901B1F !important;
+        font-size: 16px;
+	}
 
-.grid-view th,
-.grid-view td:last-child {
-    white-space: nowrap;
-}
+	.nav-link i {
+		color:#901B1F;
+	}
 
-.grid-view .filters input,
-.grid-view .filters select {
-    min-width: 50px;
-}
-
-.hint-block {
-    display: block;
-    margin-top: 5px;
-    color: #999;
-}
-
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding-top: 7px;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 0;
+    .nav-item-child {
+        margin-left: 27px;
     }
-}
 
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.75);
-}
+    .nav-item-child a {
+        margin-left: 27px;
+		color:#901B1F !important;
+    }
 
-.nav > li > form > button.logout:focus {
-    outline: none;
-}
+    .nav-item-child a:hover {
+        font-weight:700;
+        font-size: 15px; 
+    }
+
+    .nav-item-child a.active {
+        font-weight:700;
+        font-size: 15px; 
+    }

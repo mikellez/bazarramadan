@@ -45,7 +45,7 @@ AppAsset::register($this);
 
 <footer class="footer mt-auto py-3">
     <div class="container">
-        <p class="text-center">&copy; www.platselangor.com</p>
+        <p class="text-center">&copy; <?= Yii::$app->params['footerUrl']?></p>
     </div>
 </footer>
 

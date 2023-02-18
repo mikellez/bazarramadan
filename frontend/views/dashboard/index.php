@@ -103,7 +103,7 @@ $gridColumns = [
 <div class="dashboard-index">
 
     <div class="jumbotron text-center bg-transparent">
-        <a class="btn btn-sm btn-warning float-right" href="/add-listing">Daftar Bazar +</a>
+        <a class="btn btn-sm btn-warning float-right" href="/add-listing"><i class="fa fa-plus"></i> Daftar Perniagaan</a>
 
         <h1 class="display-4">Bazar Listing</h1>
 

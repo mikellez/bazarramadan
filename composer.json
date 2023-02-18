@@ -26,7 +26,8 @@
         "bilginnet/yii2-cropper": "dev-master",
         "budyaga/yii2-cropper": "*",
         "rmrevin/yii2-fontawesome": "2.10.*",
-        "2amigos/yii2-croppie-widget": "1.0.x-dev"
+        "2amigos/yii2-croppie-widget": "1.0.x-dev",
+        "simialbi/yii2-animate": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c07462d30425b8e34490cbaf1142a4cd",
+    "content-hash": "06d10efbf3f4f7db635573bc6401225a",
     "packages": [
         {
             "name": "2amigos/yii2-croppie-widget",
@@ -116,6 +116,21 @@
                 "yii2"
             ],
             "time": "2018-11-11T19:45:40+00:00"
+        },
+        {
+            "name": "bower-asset/animate.css",
+            "version": "3.7.2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:daneden/animate.css.git",
+                "reference": "ab5fe9dae4fdb936eee698ce1850a263008f0a99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/daneden/animate.css/zipball/ab5fe9dae4fdb936eee698ce1850a263008f0a99",
+                "reference": "ab5fe9dae4fdb936eee698ce1850a263008f0a99"
+            },
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -235,13 +250,31 @@
             "version": "3.6.3",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "da0f228131a578aea168b799fe4d7fe01764c98b"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/da0f228131a578aea168b799fe4d7fe01764c98b",
                 "reference": "da0f228131a578aea168b799fe4d7fe01764c98b"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/moment",
+            "version": "2.29.4",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:moment/moment.git",
+                "reference": "000ac1800e620f770f4eb31b5ae908f6167b0ab2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moment/moment/zipball/000ac1800e620f770f4eb31b5ae908f6167b0ab2",
+                "reference": "000ac1800e620f770f4eb31b5ae908f6167b0ab2"
             },
             "type": "bower-asset",
             "license": [
@@ -1290,6 +1323,96 @@
             "description": "Select2 is a jQuery based replacement for select boxes.",
             "homepage": "https://select2.org/",
             "time": "2020-01-28T05:01:22+00:00"
+        },
+        {
+            "name": "simialbi/yii2-animate",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simialbi/yii2-animate.git",
+                "reference": "73baee2813bb3ff140a1be4a23dffe5f6ab8826d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simialbi/yii2-animate/zipball/73baee2813bb3ff140a1be4a23dffe5f6ab8826d",
+                "reference": "73baee2813bb3ff140a1be4a23dffe5f6ab8826d",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/animate.css": "~3.7",
+                "simialbi/yii2-simialbi-base": "*",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "simialbi\\yii2\\animatecss\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Karlen",
+                    "email": "simi.albi@outlook.com"
+                }
+            ],
+            "description": "animate.css from daneden for usage in yii framework",
+            "keywords": [
+                "Animate.css",
+                "animate",
+                "daneden",
+                "yii2"
+            ],
+            "time": "2018-09-13T16:03:52+00:00"
+        },
+        {
+            "name": "simialbi/yii2-simialbi-base",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simialbi/yii2-simialbi-base.git",
+                "reference": "aaca48daed7a76e0454a17df5c995ba9b60e5da8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simialbi/yii2-simialbi-base/zipball/aaca48daed7a76e0454a17df5c995ba9b60e5da8",
+                "reference": "aaca48daed7a76e0454a17df5c995ba9b60e5da8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/animate.css": "~3.5",
+                "bower-asset/moment": "~2.22",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "simialbi\\yii2\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Karlen",
+                    "email": "simi.albi@gmail.com"
+                }
+            ],
+            "description": "yii2 simialbi base",
+            "keywords": [
+                "base",
+                "extension",
+                "foundation",
+                "simialbi",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-10-10T07:38:53+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

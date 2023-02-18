@@ -15,6 +15,7 @@ $this->title = 'My Yii Application';
 ?>
 <div class="add-listing-index">
 
+
     <div class="add-listing-step" style="opacity: 1;">
         <!-- start i section-->
         <?php $form = ActiveForm::begin([
@@ -25,9 +26,13 @@ $this->title = 'My Yii Application';
             'options' => ['enctype' => 'multipart/form-data']
         ]); ?>  
 
+        <div class="container text-center" style="padding: 3rem 2rem">
+            <a class="btn btn-sm btn-warning float-right" href="/dashboard"><i class="fa fa-long-arrow-left"></i> Back</a>
+        </div>
+
         <div class="card">
-            <div class="card-header">
-                BAHAGIAN DEPAN KEDAI BAZAR
+            <div class="card-header" id="bahagian-depan-kedai-bazar">
+                <i class="fa fa-home"></i> BAHAGIAN DEPAN KEDAI BAZAR
             </div>
             <div class="card-body">
                 <?= $form->field($model, 'shop_name', [
@@ -77,8 +82,8 @@ $this->title = 'My Yii Application';
         </div>
 
         <div class="card mt-5">
-            <div class="card-header">
-                MENU DAN GAMBAR MAKANAN
+            <div class="card-header" id="menu-dan-gambar-makanan">
+                <i class="fa fa-list"></i> MENU DAN GAMBAR MAKANAN
             </div>
             <div class="card-body">
 
@@ -102,7 +107,7 @@ $this->title = 'My Yii Application';
                     ]); ?>
                     <div class="card mb-2">
                         <div class="card-header">
-                            <i class="fa fa-envelope"></i> Senarai Menu Makanan & Minuman
+                            Senarai Menu Makanan & Minuman
                             <button type="button" class="float-right add-item btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Item</button>
                             <div class="clearfix"></div>
                         </div>
@@ -225,8 +230,8 @@ $this->title = 'My Yii Application';
         </div>
 
         <div class="card mt-5">
-            <div class="card-header">
-                MAKLUMAT LOKASI BAZAR RAMADAN
+            <div class="card-header" id="maklumat-lokasi-bazar-ramadan">
+                <i class="fa fa-location-arrow"></i> MAKLUMAT LOKASI BAZAR RAMADAN
             </div>
             <div class="card-body">
                 <?= $form->field($model, 'pbt_location_id', [
@@ -280,19 +285,19 @@ $this->title = 'My Yii Application';
         <div class="add-listing-nav">
             <ul>
             <li id="form-section-bahagian-depan-kedai-bazar-nav" class="active">
-                <a href="#">
+                <a href="#bahagian-depan-kedai-bazar">
                 <i>
                     <span></span>
                 </i>BAHAGIAN DEPAN KEDAI BAZAR </a>
             </li>
             <li id="form-section-maklumat-penjaja-bazar-nav" class="">
-                <a href="#">
+                <a href="#menu-dan-gambar-makanan">
                 <i>
                     <span></span>
                 </i>MENU &amp; GAMBAR MAKANAN </a>
             </li>
             <li id="form-section-maklumat-lokasi-bazar-ramadan-nav" class="">
-                <a href="#">
+                <a href="#maklumat-lokasi-bazar-ramadan">
                 <i>
                     <span></span>
                 </i>MAKLUMAT LOKASI BAZAR RAMADAN </a>
@@ -567,6 +572,43 @@ $js = <<<JS
             console.log(fileInput.files);
             console.log(file, fileInput, fileInput.files)
         });
+
+        $("[href^='#']").click(function() {
+            id=$(this).attr("href")
+            $('html, body').animate({
+                scrollTop: $(id).offset().top
+            }, 1000);
+        });
+
+        $(window).scroll(function() {    
+            var scroll = $(window).scrollTop();
+            var objectSelect = $("#bahagian-depan-kedai-bazar");
+            var objectPosition = objectSelect.offset().top;
+            if (scroll > objectPosition) {
+                $(".add-listing-nav li#form-section-bahagian-depan-kedai-bazar-nav").removeClass("active");
+            } else {
+                $(".add-listing-nav li#form-section-bahagian-depan-kedai-bazar-nav").addClass("active");
+            }
+
+            var scroll = $(window).scrollTop();
+            var objectSelect = $("#menu-dan-gambar-makanan");
+            var objectPosition = objectSelect.offset().top;
+            if (scroll > objectPosition) {
+                $(".add-listing-nav li#form-section-maklumat-penjaja-bazar-nav").removeClass("active");
+            } else {
+                $(".add-listing-nav li#form-section-maklumat-penjaja-bazar-nav").addClass("active");
+            }
+
+            var scroll = $(window).scrollTop();
+            var objectSelect = $("#maklumat-lokasi-bazar-ramadan");
+            var objectPosition = objectSelect.offset().top;
+            if (scroll > objectPosition) {
+                $(".add-listing-nav li#form-section-maklumat-lokasi-bazar-ramadan-nav").removeClass("active");
+            } else {
+                $(".add-listing-nav li#form-section-maklumat-lokasi-bazar-ramadan-nav").addClass("active");
+            }
+        });
+
     });  
 
 JS;

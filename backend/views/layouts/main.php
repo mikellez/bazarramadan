@@ -4,13 +4,13 @@
 /** @var string $content */
 
 use common\widgets\Alert;
-use backend\assets\DashboardAsset;
+use backend\assets\AppAsset;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 
-DashboardAsset::register($this);
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -26,7 +26,8 @@ DashboardAsset::register($this);
 <?php $this->beginBody() ?>
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-	<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?= Yii::$app->user->identity->username?></a>
+	<!--a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?= Yii::$app->user->identity->ic_no?></a>-->
+  	<a class="navbar-brand col-sm-3 col-md-2 mr-0"><img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>"/></a>
 	<!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
 	<ul class="navbar-nav px-3" style="flex-direction: row">
 		<li class="nav-item text-nowrap">
@@ -40,18 +41,20 @@ DashboardAsset::register($this);
 		<!-- start side panel -->
 		<nav class="col-md-2 d-none d-md-block bg-light sidebar">
 			<div class="sidebar-sticky">
-                <div>
-                    <a href="/site/index"><?= Yii::$app->user->identity->username?></a>
-                </div>
                 <?php 
                     $pbt_location = \common\models\PbtLocation::find()->all();
                 ?>
 				<ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/site/index"><i class="fa fa-user fa-lg"></i>
+                        <span class="identity">&nbsp; <?= Yii::$app->user->identity->username?></span></a>
+                    </li>
                 <?php foreach($pbt_location as $location):?>
                     <?php if(Yii::$app->user->can('canView'.$location->code)):?>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/site/index?id=<?= $location->id?>">
-                        <?= $location->code?> <span class="sr-only">(current)</span>
+                    <li class="nav-item nav-item-child">
+                        <a class="nav-link <?= $location->id == Yii::$app->request->get('id') ? 'active' : ''?>" href="/site/index?id=<?= $location->id?>">
+                        <i class="fa fa-caret-right"></i> &nbsp;
+                        <?= $location->code?> <span class="sr-only">(current)</span> 
                         </a>
                     </li>
                     <?php endif;?>
@@ -75,10 +78,9 @@ DashboardAsset::register($this);
 </div>
 
 
-<footer class="footer mt-auto py-3 text-muted" style="margin-left: 250px;">
+<footer class="footer mt-auto py-3 text-muted text-center" style="margin-left: 250px;">
     <div class="container">
-        <p class="float-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
+        <p class="">&copy; <?= Html::encode(Yii::$app->params['footerUrl']) ?> </p>
     </div>
 </footer>
 
