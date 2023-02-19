@@ -6,8 +6,8 @@ $this->title = 'Soalan Lazim';
 ?>
 <div class="add-listing-success-page">
 
-	<h4 class="mb-5"><u>Soalan Lazim</u></h4>
-	<div style="padding: 0 0 0 0;">
+	<div class="jumbotron bg-transparent">
+		<h4 class="mb-5"><u>Soalan Lazim</u></h4>
 		<p class="question">Apa itu Bazar Ramadan PLATS?</p>
 		<p class="text-muted">Bazar Ramadan PLATS adalah sebuah direktori digital di mana orang ramai dapat mencari juadah di tapak-tapak bazar Ramadan di seluruh Selangor, serta buat tempahan makanan & minuman dari peniaga bazar. Ini adalah sebuah usaha Kerajaan Selangor untuk lebih mendigitalisasikan para peniaga di Selangor.
 		</p>
@@ -46,8 +46,8 @@ $this->title = 'Soalan Lazim';
 		<br/>
 		<p class="question">Saya telah mendaftar di Bazar Ramadan PLATS. Adakah saya dibenarkan untuk membuat penukaran senarai menu, gambar, atau maklumat lain?</p>
 		<p class="text-muted">Jika anda ingin membuat sebarang penukaran mengenai maklumat gerai, anda perlu menghubungi pengelola atau PBT anda untuk mengeluarkan nama gerai anda dari Bazar Ramadan PLATS. Kemudian, anda boleh mendaftar semula dengan maklumat terkini. </p>
+		<a class="btn btn-sm btn-warning float-right mb-5" href="/dashboard">Seterusnya <i class="fa fa-long-arrow-right"></i></a>
 
 	</div>
 
-	<a class="btn btn-sm btn-warning float-right mb-5" href="/dashboard">Seterusnya <i class="fa fa-long-arrow-right"></i></a>
 </div>
