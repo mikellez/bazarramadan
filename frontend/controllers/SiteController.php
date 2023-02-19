@@ -37,7 +37,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'faq'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -296,5 +296,9 @@ class SiteController extends Controller
         return $this->render('resendVerificationEmail', [
             'model' => $model
         ]);
+    }
+
+    public function actionFaq() {
+        return $this->render('faq');
     }
 }

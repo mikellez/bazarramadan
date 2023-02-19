@@ -137,11 +137,13 @@ $gridColumns = [
 
         <!--<h1 class="display-4">Bazar Listing</h1>-->
 
+        <div class="text-center">
         <?php if($modelPbtLocation !== null):?>
         <p class="lead"><?= $modelPbtLocation->name?> (<?= $modelPbtLocation->code?>)</p>
         <?php else:?>
         <p class="lead">Semua Senarai PBT</p>
         <?php endif;?>
+        </div>
 
         <!--<div class="card card-outline card-primary">
         <div class="card-header">
@@ -152,7 +154,7 @@ $gridColumns = [
             <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
-            'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm'],
+            'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm table-responsive'],
             'columns' => $gridColumns
         ]); ?> 
         <!--</div>-->

@@ -136,14 +136,15 @@ class SiteController extends Controller
 		$dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
         $dataProvider->setPagination(['pageSize' => 10]);
 		$dataProvider->query->andWhere(['=', 'active', 1]);
-        if(!Yii::$app->user->can('superAdmin') || $id > 0)
-		    $dataProvider->query->andWhere(['=', 'pbt_location_id', $id]);
 
-        if(Yii::$app->user->identity->pbt_location_id) {
-            $modelPbtLocation = PbtLocation::findOne(Yii::$app->user->identity->pbt_location_id);
-		    $dataProvider->query->andWhere(['=', 'pbt_location_id', Yii::$app->user->identity->pbt_location_id]);
+        if($id>0) {
+		    $dataProvider->query->andWhere(['=', 'pbt_location_id', $id]);
         }
 
+        if(!Yii::$app->user->can('superAdmin') && $id == null) {
+            $modelPbtLocation = PbtLocation::findOne(Yii::$app->user->identity->pbt_location_id);
+		    $dataProvider->query->andWhere(['=', 'pbt_location_id', $modelPbtLocation->id]);
+        }
 
         return $this->render('index', [
             'modelPbtLocation'=>$modelPbtLocation,

@@ -159,6 +159,8 @@ class AddListingController extends Controller
 					$transaction->commit();
 					return $this->redirect('/add-listing/success-page');
 				} else {
+					$transaction->rollBack();
+					var_dump($model->getErrors());die;
 					throw new Exception('Error saving..');
 				}
 			} catch (Exception $e) {

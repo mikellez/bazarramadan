@@ -26,15 +26,23 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <header>
-<nav class="navbar navbar-light bg-light justify-content-between">
-  <a class="navbar-brand">Logo</a>
-  <a class="navbar-brand">Bazar Ramadan</a>
-  <span></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+	<a class="navbar-brand"><img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>"/></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="">
+		<li class="nav-item">
+			<a class="nav-link" href="/dashboard/logout">Logout</a>
+		</li>
+    </ul>
+  </div>
 </nav>
 </header>
 
 <main role="main" class="flex-shrink-0">
-    <div class="container" style="padding: 78px 105px 28px">
+    <div class="container" >
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -43,10 +51,9 @@ AppAsset::register($this);
     </div>
 </main>
 
-<footer class="footer mt-auto py-3 text-muted">
+<footer class="footer mt-auto py-3 text-center">
     <div class="container">
-        <p class="float-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
+        <p class="">&copy; <?= Yii::$app->params['footerUrl'] ?> </p>
     </div>
 </footer>
 

@@ -102,12 +102,17 @@ $gridColumns = [
 ?>
 <div class="dashboard-index">
 
+    <div class="float-right">
+        <a class="btn btn-sm btn-warning" href="/add-listing">Daftar Perniagaan <i class="fa fa-plus"></i></a>
+    </div>
+    <br/>
     <div class="jumbotron text-center bg-transparent">
-        <a class="btn btn-sm btn-warning float-right" href="/add-listing"><i class="fa fa-plus"></i> Daftar Perniagaan</a>
+        <div class="text-center">
+            <p class="lead">Bazar Listing</p>
+        </div>
 
-        <h1 class="display-4">Bazar Listing</h1>
+        <!--<h1 class="display-4">Bazar Listing</h1>-->
 
-        <p class="lead">Platform Selangor</p>
 
         <!--<div class="card card-outline card-primary">
         <div class="card-header">
@@ -118,7 +123,7 @@ $gridColumns = [
             <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
-            'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm'],
+            'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm table-responsive'],
             'columns' => $gridColumns
         ]); ?> 
         <!--</div>-->

@@ -30,8 +30,8 @@ $this->title = 'My Yii Application';
             <a class="btn btn-sm btn-warning float-right" href="/dashboard"><i class="fa fa-long-arrow-left"></i> Back</a>
         </div>
 
-        <div class="card">
-            <div class="card-header" id="bahagian-depan-kedai-bazar">
+        <div class="card" id="bahagian-depan-kedai-bazar">
+            <div class="card-header">
                 <i class="fa fa-home"></i> BAHAGIAN DEPAN KEDAI BAZAR
             </div>
             <div class="card-body">
@@ -81,8 +81,8 @@ $this->title = 'My Yii Application';
             </div>
         </div>
 
-        <div class="card mt-5">
-            <div class="card-header" id="menu-dan-gambar-makanan">
+        <div class="card mt-5" id="menu-dan-gambar-makanan">
+            <div class="card-header">
                 <i class="fa fa-list"></i> MENU DAN GAMBAR MAKANAN
             </div>
             <div class="card-body">
@@ -116,7 +116,7 @@ $this->title = 'My Yii Application';
                                 <div class="item card"><!-- widgetBody -->
                                     <div class="card-header">
                                         <span class="panel-title-address">Menu Makanan & Minuman: <?= ($index + 1) ?></span>
-                                        <button type="button" class="float-right remove-item btn btn-danger btn-sm"><i class="fa fa-minus"></i>Remove Item</button>
+                                        <button type="button" class="float-right remove-item btn btn-danger btn-sm"><i class="fa fa-minus"></i> Remove Item</button>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="card-body">
@@ -229,8 +229,8 @@ $this->title = 'My Yii Application';
             </div>
         </div>
 
-        <div class="card mt-5">
-            <div class="card-header" id="maklumat-lokasi-bazar-ramadan">
+        <div class="card mt-5" id="maklumat-lokasi-bazar-ramadan">
+            <div class="card-header">
                 <i class="fa fa-location-arrow"></i> MAKLUMAT LOKASI BAZAR RAMADAN
             </div>
             <div class="card-body">
@@ -274,7 +274,7 @@ $this->title = 'My Yii Application';
         <div class="text-center">
             <a href="#" class="btn btn-light w-100 mt-5" style="height: 46px;" onclick="resetButton()">Reset</a>
         </div>
-        <div class="text-center">
+        <div class="text-center mb-5">
             <?= Html::submitButton('Submit Listing', ['class' => 'btn btn-md btn-primary mt-3 w-100', 'style'=>'background: #892920; border-color: #892920; height: 46px;', 'name' => 'add-listing-submit-button']) ?>
         </div>
 
@@ -282,9 +282,9 @@ $this->title = 'My Yii Application';
 
         <!-- end i section --> 
 
-        <div class="add-listing-nav">
+        <div class="add-listing-nav d-none d-lg-block">
             <ul>
-            <li id="form-section-bahagian-depan-kedai-bazar-nav" class="active">
+            <li id="form-section-bahagian-depan-kedai-bazar-nav">
                 <a href="#bahagian-depan-kedai-bazar">
                 <i>
                     <span></span>
@@ -310,10 +310,10 @@ $this->title = 'My Yii Application';
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="uploadimageModal">
-    <div class="modal-dialog" role="document" style="min-width: 700px">
+    <div class="modal-dialog" role="document" >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Crop Image</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -334,10 +334,10 @@ $this->title = 'My Yii Application';
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="uploadcoverimageModal">
-    <div class="modal-dialog" role="document" style="min-width: 700px">
+    <div class="modal-dialog" role="document" >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Crop Image</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -377,8 +377,13 @@ $js = <<<JS
         });
     });
 
+    window.onunload = function(){}; 
+
     $(document).ready(function(){
         let systemClick = false;
+
+        resetButton();
+
         //$("#uploadform-imagefile").fileinput({'showUpload':false, 'previewFileType':'any'});
         $('#bazar-cover_imagefile').on('change', function(){
             if(systemClick == true) {
@@ -577,37 +582,39 @@ $js = <<<JS
             id=$(this).attr("href")
             $('html, body').animate({
                 scrollTop: $(id).offset().top
-            }, 1000);
+            }, 500);
         });
 
-        $(window).scroll(function() {    
+        /*$(window).scroll(function() {    
             var scroll = $(window).scrollTop();
             var objectSelect = $("#bahagian-depan-kedai-bazar");
             var objectPosition = objectSelect.offset().top;
-            if (scroll > objectPosition) {
-                $(".add-listing-nav li#form-section-bahagian-depan-kedai-bazar-nav").removeClass("active");
-            } else {
+            var objectPositionHeight = objectSelect.height();
+            var objectOffset = 100;
+            if (scroll >= (objectPosition - objectOffset) && scroll <= (objectPositionHeight + objectPosition)) {
                 $(".add-listing-nav li#form-section-bahagian-depan-kedai-bazar-nav").addClass("active");
+            } else {
+                $(".add-listing-nav li#form-section-bahagian-depan-kedai-bazar-nav").removeClass("active");
             }
 
-            var scroll = $(window).scrollTop();
             var objectSelect = $("#menu-dan-gambar-makanan");
             var objectPosition = objectSelect.offset().top;
-            if (scroll > objectPosition) {
-                $(".add-listing-nav li#form-section-maklumat-penjaja-bazar-nav").removeClass("active");
-            } else {
+            var objectPositionHeight = objectSelect.height();
+            if (scroll >= (objectPosition + objectOffset) && scroll <= (objectPositionHeight + objectPosition)) {
                 $(".add-listing-nav li#form-section-maklumat-penjaja-bazar-nav").addClass("active");
+            } else {
+                $(".add-listing-nav li#form-section-maklumat-penjaja-bazar-nav").removeClass("active");
             }
 
-            var scroll = $(window).scrollTop();
             var objectSelect = $("#maklumat-lokasi-bazar-ramadan");
             var objectPosition = objectSelect.offset().top;
-            if (scroll > objectPosition) {
-                $(".add-listing-nav li#form-section-maklumat-lokasi-bazar-ramadan-nav").removeClass("active");
-            } else {
+            var objectPositionHeight = objectSelect.height();
+            if (scroll >= (objectPosition + objectOffset) && scroll <= (objectPositionHeight + objectPosition)) {
                 $(".add-listing-nav li#form-section-maklumat-lokasi-bazar-ramadan-nav").addClass("active");
+            } else {
+                $(".add-listing-nav li#form-section-maklumat-lokasi-bazar-ramadan-nav").removeClass("active");
             }
-        });
+        });*/
 
     });  
 
