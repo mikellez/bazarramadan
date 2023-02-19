@@ -198,7 +198,7 @@ class AddListingController extends Controller
 			if ($parents != null) {
 				$cat_id = $parents[0];
 	 
-				$out = Bazar::getBazarLocationList($cat_id); 
+				$result = self::getBazarLocationList($cat_id); 
 				// the getSubCatList1 function will query the database based on the
 				// cat_id, param1, param2 and return an array like below:
 				// [
@@ -213,14 +213,20 @@ class AddListingController extends Controller
 				// ]
 				
 				
-				$selected = count(Bazar::getBazarLocationList($cat_id));
 				// the getDefaultSubCat function will query the database
 				// and return the default sub cat for the cat_id
 				
-				return ['output' => $out, 'selected' => $selected];
+				return ['output' => $result['out'], 'selected' => $result['selected']];
 			}
 		}
 		return ['output' => '', 'selected' => ''];
+	}
+
+	function getBazarLocationList($id) {
+		$result = Bazar::getBazarLocationList($id);
+
+		return ['out'=>$result, 'selected'=>$result[0]];
+
 	}
 
 	public function actionUpload() {

@@ -377,12 +377,10 @@ $js = <<<JS
         });
     });
 
-    window.onunload = function(){}; 
-
     $(document).ready(function(){
         let systemClick = false;
 
-        resetButton();
+        //resetButton();
 
         //$("#uploadform-imagefile").fileinput({'showUpload':false, 'previewFileType':'any'});
         $('#bazar-cover_imagefile').on('change', function(){

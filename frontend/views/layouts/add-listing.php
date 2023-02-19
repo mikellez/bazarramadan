@@ -52,11 +52,12 @@ AppAsset::register($this);
 				<span></span>
 			</i>MAKLUMAT LOKASI BAZAR RAMADAN </a>
 		</li>
-		<li class="nav-item">
+		<li class="nav-item d-lg-none">
 			<a class="nav-link" href="/dashboard/logout">Logout</a>
 		</li>
     </ul>
   </div>
+	<a class="text-muted d-none d-lg-block" href="/dashboard/logout">Logout</a>
 </nav>
 </header>
 
