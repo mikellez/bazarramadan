@@ -78,7 +78,7 @@ $pbt_location = \common\models\PbtLocation::find()->all();
 		<!-- end side panel -->
 
 
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-5 px-4">
 			<div class="container">
 				<?= Breadcrumbs::widget([
 					'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

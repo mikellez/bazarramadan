@@ -133,7 +133,7 @@ class SiteController extends Controller
 
 		$searchModel = new BazarSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		$dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
+		$dataProvider->sort->defaultOrder = ['updated_at' => SORT_DESC];
         $dataProvider->setPagination(['pageSize' => 10]);
 		$dataProvider->query->andWhere(['=', 'active', 1]);
 
