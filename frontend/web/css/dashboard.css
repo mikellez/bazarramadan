@@ -118,3 +118,17 @@ body {
 	.nav-link i {
 		color:#901B1F;
 	}
+
+.page-link {
+    color: #901B1F;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #901B1F;
+    border-color: #901B1F;
+}
+
+a {
+	color: #901B1F;
+}

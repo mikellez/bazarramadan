@@ -139,3 +139,17 @@ body {
         font-weight:700;
         font-size: 15px; 
     }
+
+.page-link {
+    color: #901B1F;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #901B1F;
+    border-color: #901B1F;
+}
+
+a {
+	color: #901B1F;
+}
