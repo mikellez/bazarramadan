@@ -155,7 +155,11 @@ $gridColumns = [
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm table-responsive'],
-            'columns' => $gridColumns
+            'columns' => $gridColumns,
+            'pager' => [
+                'class' => 'yii\bootstrap4\LinkPager'
+            ]
+
         ]); ?> 
         <!--</div>-->
         <!-- /.card-body -->
