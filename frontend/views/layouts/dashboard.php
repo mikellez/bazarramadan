@@ -42,7 +42,9 @@ DashboardAsset::register($this);
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 	<a class="navbar-brand"><img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon">
+        <i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i>
+	</span>
   </button>
   <!--<a class="navbar-brand" href="#">Navbar</a>-->
 
@@ -52,7 +54,7 @@ DashboardAsset::register($this);
 			<a class="nav-link" href="/dashboard/logout">Logout</a>
 		</li>
     </ul>
-	<a class="text-muted d-none d-lg-block" href="/dashboard/logout">Logout</a>
+	<a class="text-muted d-none d-lg-block logout" href="/dashboard/logout">Logout</a>
 </nav>
 
 <div class="container-fluid">

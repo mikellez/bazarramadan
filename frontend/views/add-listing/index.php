@@ -11,7 +11,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 use dosamigos\croppie\CroppieWidget;
 
 
-$this->title = 'My Yii Application';
+$this->title = 'Bazar Ramadan Plats Selangor';
 ?>
 <div class="add-listing-index">
 
@@ -27,7 +27,7 @@ $this->title = 'My Yii Application';
         ]); ?>  
 
         <div class="container text-center" style="padding: 3rem 2rem">
-            <a class="btn btn-sm btn-warning float-right" href="/dashboard"><i class="fa fa-long-arrow-left"></i> Back</a>
+            <a class="btn btn-sm btn-warning " href="/dashboard"><i class="fa fa-long-arrow-left"></i> Back</a>
         </div>
 
         <div class="card" id="bahagian-depan-kedai-bazar">

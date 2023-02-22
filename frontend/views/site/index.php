@@ -5,7 +5,7 @@
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
-$this->title = 'My Yii Application';
+$this->title = 'Bazar Ramadan Plats Selangor';
 ?>
 <div class="site-index">
 

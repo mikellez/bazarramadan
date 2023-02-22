@@ -86,13 +86,13 @@ $gridColumns = [
             'class'=>'text-center'
         ]
     ],
-    [
+    /*[
         'class' => 'yii\grid\ActionColumn',
         'contentOptions'=>[
             'class'=>'text-right'
         ],
         'template'=>'{delete}'
-    ],
+    ],*/
     
     ];
     
@@ -102,7 +102,7 @@ $gridColumns = [
 ?>
 <div class="dashboard-index">
 
-    <div class="float-right">
+    <div class="text-center">
         <a class="btn btn-sm btn-warning" href="/add-listing">Daftar Perniagaan <i class="fa fa-plus"></i></a>
     </div>
     <br/>

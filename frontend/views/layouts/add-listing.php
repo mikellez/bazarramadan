@@ -29,7 +29,9 @@ AppAsset::register($this);
 <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100" style="z-index: 999;">
 	<a class="navbar-brand"><img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon">
+        <i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i>
+	</span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -57,7 +59,7 @@ AppAsset::register($this);
 		</li>
     </ul>
   </div>
-	<a class="text-muted d-none d-lg-block" href="/dashboard/logout">Logout</a>
+	<a class="text-muted d-none d-lg-block logout" href="/dashboard/logout">Logout</a>
 </nav>
 </header>
 
