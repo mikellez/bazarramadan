@@ -86,7 +86,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                     foreach($items as $item) {
                         echo '<div class="col-lg-12 col-md-'.$bootstrapColWidth.'">';
                         // your item
-                        echo '<img width="30" height="30" src="'.Yii::$app->params['backendUrl'].'/storage/'.$item->code.'.png"/>';
+                        echo '<img width="30" height="30" src="'.Yii::$app->params['backendUrl'].'/storage/'.strtolower($item->code).'.png"/>';
                         echo '</div>';
                     }
                     echo '</div>';
@@ -96,7 +96,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         </div>
         <div class="d-none d-lg-block text-center">
             <?php foreach(\common\models\PbtLocation::find()->all() as $location):?>
-                    <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= $location->code?>.png"/>
+                    <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= strtolower($location->code)?>.png"/>
                 <!--<div class="col-sm-4">
                     <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= $location->code?>.png"/>
                 </div>-->
