@@ -139,7 +139,7 @@ class Bazar extends \yii\db\ActiveRecord
         if(!$this->cover_image) {
             return Yii::$app->params['backendUrl'].'/img/noimg.jpeg';
         }
-        return Yii::$app->params['backendUrl'].'/storage'.$this->cover_image.'?v='.time();
+        return Yii::$app->params['backendUrl'].'/storage/uploads'.$this->cover_image.'?v='.time();
     }
 
     public static function getTagList()
