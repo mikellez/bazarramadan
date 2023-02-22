@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\helpers\Url;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /** @var yii\web\View $this */
 
@@ -123,6 +125,17 @@ $gridColumns = [
             },
         ]
     ],
+    [
+        'class' => 'kartik\grid\CheckboxColumn',
+        'checkboxOptions' => function ($model, $key, $index, $column) {
+            if (in_array($model->status, [$model::STATUS_APPROVE, $model::STATUS_REJECT])) {
+                return ['disabled'=>true];
+            }
+        },
+        'headerOptions' => ['class' => 'kartik-sheet-style'],
+        'pageSummary' => '<small>(amounts in $)</small>',
+        'pageSummaryOptions' => ['colspan' => 3, 'data-colspan-dir' => 'rtl']
+    ],
     
     ];
     
@@ -151,18 +164,131 @@ $gridColumns = [
 
         <!-- /.card-header -->
         <!--<div class="card-body p-0">-->
-            <?= GridView::widget([
+        <?/*= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm table-responsive'],
             'columns' => $gridColumns,
             'pager' => [
                 'class' => 'yii\bootstrap4\LinkPager'
-            ]
+            ],
 
-        ]); ?> 
+        ]); */
+        ?>
+        <?php echo GridView::widget([
+            'id' => 'kv-grid-demo',
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => $gridColumns, // check this value by clicking GRID COLUMNS SETUP button at top of the page
+            'headerContainer' => ['style' => '', 'class' => 'kv-table-header'], // offset from top
+            'floatHeader' => true, // table header floats when you scroll
+            'floatPageSummary' => true, // table page summary floats when you scroll
+            'floatFooter' => false, // disable floating of table footer
+            'pjax' => false, // pjax is set to always false for this demo
+            // parameters from the demo form
+            'responsive' => true,
+            'responsiveWrap' => false,
+            'bordered' => true,
+            'striped' => false,
+            'condensed' => true,
+            'hover' => true,
+            'showPageSummary' => false,
+            'panel' => [
+                'after' => '',
+                'heading' => '',
+                'type' => 'primary',
+                'before' => '',
+            ],
+            // set your toolbar
+            'toolbar' =>  [
+                [
+                    'content' =>
+                        Html::button('<i class="fa fa-check"></i> Approve', [
+                            'id'=>'approveAll-btn',
+                            'class' => 'btn btn-success',
+                            'title' => 'Approve',
+                            'href' => Url::base().'/site/approveAll'
+                            //'onclick' => ''
+                        ]) . ' '.
+                        Html::button('<i class="fa fa-times"></i> Reject', [
+                            'id'=>'rejectAll-btn',
+                            'class' => 'btn btn-danger',
+                            'title'=>'Reject',
+                            'href' => Url::base().'/site/rejectAll',
+                            //'data-pjax' => 0, 
+                        ]), 
+                    'options' => ['class' => 'btn-group mr-2 me-2']
+                ],
+            ],
+            'toggleDataContainer' => ['class' => 'btn-group mr-2 me-2'],
+            'persistResize' => false,
+            'toggleDataOptions' => ['minCount' => 10],
+            'itemLabelSingle' => 'book',
+            'itemLabelPlural' => 'books'
+        ]);
+         
+        ?> 
         <!--</div>-->
         <!-- /.card-body -->
     </div>
 
 </div>
+
+<?php 
+$url = Yii::getAlias('@web');//Yii::$app->getUrlManager()->getBaseUrl(true);
+//->baseUrl;
+$js = <<<JS
+    $(document).ready(function() {
+        $("#approveAll-btn").on("click", function() {
+            var keys = $("#kv-grid-demo").yiiGridView("getSelectedRows");
+            if(keys.length<=0) {
+                alert("No rows selected for approve");
+                return;
+            }
+            $.ajax({
+                type: 'POST',
+                url: $url"site/approve-all",
+                data: { 'BazarSearch[id]' : keys.join() },
+                traditional: true,
+                success: function(data) {
+                    if(!data.success) {
+                        alert(data.message);
+                        return;
+                    }
+                    alert('Approve successful!');
+                    location.reload();
+                    //$("#product-grid-container").html(data);
+                    //$.pjax.reload({container: '#pjax-product-grid', 'timeout': 5000});
+                    //swal("Success..","Your product is added successfull!","success");
+                }
+            });
+        });
+
+        $("#rejectAll-btn").on("click", function() {
+            var keys = $("#kv-grid-demo").yiiGridView("getSelectedRows");
+            if(keys.length<=0) {
+                alert("No rows selected for reject");
+                return;
+            }
+            $.ajax({
+                type: 'POST',
+                url: $url"site/reject-all",
+                data: { 'BazarSearch[id]' : keys.join() },
+                traditional: true,
+                success: function(data) {
+                    if(!data.success) {
+                        alert(data.message);
+                        return;
+                    }
+                    alert('Reject successful!');
+                    location.reload();
+                    //$("#product-grid-container").html(data);
+                    //$.pjax.reload({container: '#pjax-product-grid', 'timeout': 5000});
+                    //swal("Success..","Your product is added successfull!","success");
+                }
+            });
+        });
+    })
+JS;
+
+$this->registerJs($js, $this::POS_END);

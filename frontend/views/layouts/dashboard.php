@@ -40,7 +40,7 @@ DashboardAsset::register($this);
 </nav>-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-	<a class="navbar-brand"><img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>"/></a>
+	<a class="navbar-brand" href="/site/index"><img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon">
         <i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i>

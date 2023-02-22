@@ -53,12 +53,20 @@ class BazarSearch extends Bazar
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            return $dataProvider;
+            //return $dataProvider;
         }
 
         // grid filtering conditions
+        if(count($ids = explode(',',$this->id ?? 0))>1) {
+            $query->andFilterWhere(['in', 'id', $ids]);
+        } else {
+            $query->andFilterWhere([
+                'id' => $this->id
+            ]);
+        }
+
         $query->andFilterWhere([
-            'id' => $this->id,
+            //'id' => $this->id,
             'user_id' => $this->user_id,
             'tag' => $this->tag,
             'whatsapp_no' => $this->whatsapp_no,

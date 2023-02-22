@@ -142,6 +142,11 @@ class Bazar extends \yii\db\ActiveRecord
         return Yii::$app->params['backendUrl'].'/storage'.$this->cover_image.'?v='.time();
     }
 
+    public static function getTagList()
+    {
+        return ArrayHelper::map(Tag::find()->asArray()->all(), 'id', 'name');
+    }
+
     public static function getPbtLocationList()
     {
         return ArrayHelper::map(PbtLocation::find()->asArray()->all(), 'id', 'name');

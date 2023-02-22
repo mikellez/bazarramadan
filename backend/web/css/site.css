@@ -154,9 +154,9 @@ a {
 	color: #901B1F;
 }
 
-.table thead th {
+/*.table thead th {
     border-bottom: 2px solid #901B1F;
-}
+}*/
 
 .table-bordered th, .table-bordered td {
     border: 1px solid #901B1F;
@@ -168,4 +168,16 @@ a {
 
 .navbar-toggler {
   border-color: rgba(255, 255, 255) !important;
+}
+
+.border-primary {
+  border-color: #901B1F !important;
+}
+
+.bg-primary {
+  background-color: #901B1F !important;
+}
+
+.table-bordered {
+  border: 1px solid #901B1F !important;
 }

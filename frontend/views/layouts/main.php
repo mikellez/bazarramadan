@@ -35,7 +35,7 @@ AppAsset::register($this);
 
 <header>
 <nav class="navbar navbar-light bg-light justify-content-between">
-  <a class="navbar-brand"><img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>"/></a>
+  <a class="navbar-brand" href="/site/index"><img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>"/></a>
   <!--<a class="navbar-brand">Bazar Ramadan</a>-->
   <span></span>
 </nav>

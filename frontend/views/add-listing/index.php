@@ -150,10 +150,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                                                 ])
                                                 ->label('Tag')
                                                 ->widget(Select2::classname(), [
-                                                    'data' => [
-                                                        1 => "burger",
-                                                        2 => "nasi lemak",
-                                                    ],
+                                                    'data' => $model->getTagList(),
                                                     'options' => ['placeholder' => 'Select an option'],
                                                     'pluginOptions' => [
                                                         'allowClear' => true

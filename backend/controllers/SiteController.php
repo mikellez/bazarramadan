@@ -33,7 +33,11 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'approve', 'reject'],
+                        'actions' => ['logout', 'index', 'approve', 'reject', 'approveAll', 'rejectAll'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -86,6 +90,23 @@ class SiteController extends Controller
             'dataProvider' => $dataProvider,
         ]);*/
     }
+    
+    public function actionApproveAll() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $searchModel = new BazarSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->post());
+        $models = $dataProvider->getModels();
+
+        foreach($models as $model) {
+            $model->status = $model::STATUS_APPROVE;
+            $model->status_by = Yii::$app->user->id;
+            $model->status_at = time();
+            $model->save();
+        }
+
+        return [ 'message'=>'', 'success'=>true ];
+    }
 
     public function actionReject($id) {
         $model = Bazar::findOne($id);
@@ -115,6 +136,22 @@ class SiteController extends Controller
 
     }
 
+    public function actionRejectAll() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $searchModel = new BazarSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->post());
+        $models = $dataProvider->getModels();
+
+        foreach($models as $model) {
+            $model->status = $model::STATUS_REJECT;
+            $model->status_by = Yii::$app->user->id;
+            $model->status_at = time();
+            $model->save();
+        }
+
+        return [ 'message'=>'', 'success'=>true ];
+    }
     /**
      * Displays homepage.
      *
