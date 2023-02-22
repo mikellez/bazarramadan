@@ -25,5 +25,5 @@ $this->title = 'Bazar Ramadan Plats Selangor';
 	</div>
 
 	<a class="btn btn-sm btn-warning float-left mb-5" href="/dashboard"><i class="fa fa-long-arrow-left"></i> Halaman Senarai</a>
-	<a class="btn btn-sm btn-warning float-right mb-5" href="/dashboard">Tamat <i class="fa fa-check"></i></a>
+	<a class="btn btn-sm btn-warning float-right mb-5" href="/dashboard/logout">Tamat <i class="fa fa-check"></i></a>
 </div>
