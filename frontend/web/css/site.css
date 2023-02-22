@@ -231,3 +231,12 @@ nav {
     background-color: #DB982E;
     border-color: #DB982E;
 }
+
+#loginform-ic_no {
+    border: 0;
+    border-bottom: 2px solid #d39e00;
+    border-radius: 0;
+}
+#loginform-ic_no:focus {
+    box-shadow: none;
+}

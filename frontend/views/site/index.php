@@ -16,9 +16,26 @@ $this->title = 'Bazar Ramadan Plats Selangor';
             <img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>" width="200px"/>
         </div>
 
-        <p class="">SILA MASUKKAN NOMBOR KAD PENGENALAN ANDA</p>
+        <?php $form = ActiveForm::begin([
+            'id' => 'login-form',
+            'fieldConfig' => [
+                'template' => "{input}"
+            ],
+        ]); ?>  
 
-        <hr class="mt-5" style="border-top: 2px solid #d39e00">
+
+        <p class="">SILA MASUKKAN NOMBOR KAD PENGENALAN ANDA</p>
+        <br/>
+
+        <?= $form->field($model, 'ic_no', [
+            'options'=>[
+                'class'=>'',
+            ],
+            'template'=>'{input}'
+            
+        ])->textInput([ 'autofocus' => true, 'placeholder'=>'No Kad Pengenalan']) ?>
+        <!--<hr class="mt-5" style="border-top: 2px solid #d39e00">-->
+        <br/>
 
         <p align="left" style="font-style: italic;">Contoh: 800323105512</p>
 
@@ -27,19 +44,6 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         <div class="">
         </div>
 
-        <?php $form = ActiveForm::begin([
-            'id' => 'login-form',
-            'fieldConfig' => [
-                'template' => "{input}"
-            ],
-        ]); ?>  
-
-        <?= $form->field($model, 'ic_no', [
-            'options'=>[
-                'class'=>'',
-            ],
-            
-        ])->textInput([ 'autofocus' => true, 'placeholder'=>'No Kad Pengenalan']) ?>
 
         <div class="d-flex justify-content-center">
             <!--<a class="btn btn-md btn-success mt-3" href="/">Semak Kelayakan</a>-->
@@ -63,8 +67,40 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         <div class="d-flex justify-content-center">
             <p class="mt-3 text-muted">dengan kerjasama Pihak Berkuasa Tempatan Selangor</p>
         </div>
-        <div class="d-flex justify-content-center">
-            <img src="<?=Yii::$app->params['backendUrl'].'/storage/pbt_logo@2x.png'?>" width="400px"/>
+        <div class="d-flex justify-content-center d-lg-none">
+            <!--<div class="row">-->
+            <?php foreach(\common\models\PbtLocation::find()->all() as $location):?>
+                <!--<div class="col-sm-4">
+                    <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= $location->code?>.png"/>
+                </div>-->
+            <?php endforeach;?>
+            <!--</div>-->
+            <?php 
+                $items = \common\models\PbtLocation::find()->all();
+                $numberOfColumns = 3;
+                $bootstrapColWidth = 12 / $numberOfColumns ;
+            
+                $arrayChunks = array_chunk($items, $numberOfColumns);
+                foreach($arrayChunks as $items) {
+                    echo '<div class="row">';
+                    foreach($items as $item) {
+                        echo '<div class="col-lg-12 col-md-'.$bootstrapColWidth.'">';
+                        // your item
+                        echo '<img width="30" height="30" src="'.Yii::$app->params['backendUrl'].'/storage/'.$item->code.'.png"/>';
+                        echo '</div>';
+                    }
+                    echo '</div>';
+                }   
+            ?>
+            <!--<img src="<?=Yii::$app->params['backendUrl'].'/storage/pbt_logo@2x.png'?>" width="400px"/>-->
+        </div>
+        <div class="d-none d-lg-block text-center">
+            <?php foreach(\common\models\PbtLocation::find()->all() as $location):?>
+                    <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= $location->code?>.png"/>
+                <!--<div class="col-sm-4">
+                    <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= $location->code?>.png"/>
+                </div>-->
+            <?php endforeach;?>
         </div>
     </div>
 

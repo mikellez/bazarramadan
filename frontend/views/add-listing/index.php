@@ -116,7 +116,6 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                                 <div class="item card"><!-- widgetBody -->
                                     <div class="card-header">
                                         <span class="panel-title-address">Menu Makanan & Minuman: <?= ($index + 1) ?></span>
-                                        <button type="button" class="float-right remove-item btn btn-danger btn-sm"><i class="fa fa-minus"></i> Remove Item</button>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="card-body">
@@ -160,6 +159,13 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                                                 ?>
                                             </div>
                                         </div><!-- end:row -->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button type="button" class="float-right remove-item btn btn-danger btn-sm"><i class="fa fa-minus"></i> Remove Item</button>
+
+                                            </div>
+
+                                        </div>
 
                                     </div>
                                 </div>

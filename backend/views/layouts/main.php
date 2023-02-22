@@ -47,11 +47,11 @@ $pbt_location = \common\models\PbtLocation::find()->all();
                 <?php endif;?>
             <?php endforeach;?>
             <li class="nav-item d-lg-none">
-                <a class="nav-link" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/logout">Logout</a>
+                <a class="nav-link" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/logout">Halaman Utama</a>
             </li>
         </ul>
     </div>
-	<a class="text-muted d-none d-lg-block logout" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/logout">Logout</a>
+	<a class="text-muted d-none d-lg-block logout" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/logout">Halaman Utama</a>
 </nav>
 
 <div class="container-fluid">
@@ -68,7 +68,8 @@ $pbt_location = \common\models\PbtLocation::find()->all();
                     <?php if(Yii::$app->user->can('canView'.$location->code)):?>
                     <li class="nav-item nav-item-child">
                         <a class="nav-link <?= $location->id == Yii::$app->request->get('id') ? 'active' : ''?>" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/index?id=<?= $location->id?>">
-                        <i class="fa fa-caret-right"></i> &nbsp;
+                        <!--<i class="fa fa-caret-right"></i> &nbsp;-->
+                        <img width="20" height="20" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= strtolower($location->code)?>.png"/>
                         <?= $location->code?> <span class="sr-only">(current)</span> 
                         </a>
                     </li>
