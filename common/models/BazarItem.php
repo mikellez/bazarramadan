@@ -51,7 +51,7 @@ class BazarItem extends \yii\db\ActiveRecord
             'bazar_id' => 'Bazar ID',
             'name' => 'Name',
             'price' => 'Price',
-            'tag' => 'Tag',
+            'tag' => 'Categori',
         ];
     }
 

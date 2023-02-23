@@ -147,7 +147,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                                                     ],
                                                     'template'=> '{label}{input}{error}'
                                                 ])
-                                                ->label('Tag')
+                                                ->label('Categori')
                                                 ->widget(Select2::classname(), [
                                                     'data' => $model->getTagList(),
                                                     'options' => ['placeholder' => 'Select an option'],
