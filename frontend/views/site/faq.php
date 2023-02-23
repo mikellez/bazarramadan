@@ -46,7 +46,7 @@ $this->title = 'Soalan Lazim';
 		<br/>
 		<p class="question">Saya telah mendaftar di Bazar Ramadan PLATS. Adakah saya dibenarkan untuk membuat penukaran senarai menu, gambar, atau maklumat lain?</p>
 		<p class="text-muted">Jika anda ingin membuat sebarang penukaran mengenai maklumat gerai, anda perlu menghubungi pengelola atau PBT anda untuk mengeluarkan nama gerai anda dari Bazar Ramadan PLATS. Kemudian, anda boleh mendaftar semula dengan maklumat terkini. </p>
-		<a class="btn btn-sm btn-warning float-right mb-5" href="/dashboard">Seterusnya <i class="fa fa-long-arrow-right"></i></a>
+		<!--<a class="btn btn-sm btn-warning float-right mb-5" href="/dashboard">Seterusnya <i class="fa fa-long-arrow-right"></i></a>-->
 
 	</div>
 

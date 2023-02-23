@@ -27,7 +27,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         ]); ?>  
 
         <div class="container text-center" style="padding: 3rem 2rem">
-            <a class="btn btn-sm btn-warning " href="/dashboard"><i class="fa fa-long-arrow-left"></i> Back</a>
+            <a class="btn btn-sm btn-warning " href="/dashboard"><i class="fa fa-long-arrow-left"></i> Balik</a>
         </div>
 
         <div class="card" id="bahagian-depan-kedai-bazar">
@@ -72,6 +72,15 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                         'maxImageWidth' => 200,
                         'minImageHeight' => 200, 
                         'maxImageHeight' => 200, 
+                        'msgPlaceholder'=>'Pilih fail...',
+                        'browseLabel'=>'Semak imbas',
+                        'dropZoneTitle'=>'Seret dan lepaskan fail di sini',
+                        'msgFileRequired'=>'Anda mesti memilih file.',
+                        'msgImageWidthSmall'=>' Lebar fail imej "{name}" mestilah sekurang-kurangnya {size} px (dikesan {dimension} px).',
+                        'msgImageHeightSmall'=>'Ketinggian fail imej "{name}" mestilah sekurang-kurangnya {size} px (dikesan {dimension} px).
+                        di mana:',
+                        'msgImageWidthLarge'=>'Lebar fail imej "{name}" tidak boleh melebihi {size} px (dikesan {dimension} px).',
+                        'msgImageHeightLarge'=>'Ketinggian of image file "{name}" cannot exceed {size} px (detected {dimension} px).'
                     ]
                 ])
 
@@ -108,7 +117,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                     <div class="card mb-2">
                         <div class="card-header">
                             Senarai Menu Makanan & Minuman
-                            <button type="button" class="float-right add-item btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Item</button>
+                            <button type="button" class="float-right add-item btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Item</button>
                             <div class="clearfix"></div>
                         </div>
                         <div class="card-body container-items"><!-- widgetContainer -->
@@ -147,10 +156,10 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                                                     ],
                                                     'template'=> '{label}{input}{error}'
                                                 ])
-                                                ->label('Categori')
+                                                ->label('Kategori')
                                                 ->widget(Select2::classname(), [
                                                     'data' => $model->getTagList(),
-                                                    'options' => ['placeholder' => 'Select an option'],
+                                                    'options' => ['placeholder' => 'Pilihan'],
                                                     'pluginOptions' => [
                                                         'allowClear' => true
                                                     ],
@@ -161,7 +170,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                                         </div><!-- end:row -->
                                         <div class="row">
                                             <div class="col-12">
-                                                <button type="button" class="float-right remove-item btn btn-danger btn-sm"><i class="fa fa-minus"></i> Remove Item</button>
+                                                <button type="button" class="float-right remove-item btn btn-danger btn-sm"><i class="fa fa-minus"></i> Keluarkan Item</button>
 
                                             </div>
 
@@ -190,12 +199,12 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                     'options'=>[
                         'class'=>'form-group',
                     ],
-                    'template'=> '{label}{input}<small id="taglineHelp" class="form-text text-muted">Maximum file size: 2 MB. Up to 5 files allowed.</small>{error}'
+                    'template'=> '{label}{input}<small id="taglineHelp" class="form-text text-muted">Saiz fail maksimum: 2 MB. Sehingga 5 fail dibenarkan.</small>{error}'
                 ])
                 ->label('Galeri gambar (Maximum 5 gambar)')
                 //->fileInput() 
                 ->widget(FileInput::classname(), [
-                    'options' => ['multiple' => true, 'accept' => 'image/*'],
+                    'options' => ['multiple' => true, 'accept' => 'image/*', 'placeholder'=>'Pilih file'],
                     'pluginOptions' => [
                         'previewFileType' => 'image', 
                         'maxFileCount'=>5, 
@@ -206,7 +215,16 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                         'maxImageHeight' => 200, 
                         'showUpload' => false,
                         'required'=>true,
-                        'allowedFileExtensions'=> ["jpg", "png", "jpeg"]
+                        'allowedFileExtensions'=> ["jpg", "png", "jpeg"],
+                        'msgPlaceholder'=>'Pilih fail...',
+                        'browseLabel'=>'Semak imbas',
+                        'dropZoneTitle'=>'Seret dan lepaskan fail di sini',
+                        'msgFileRequired'=>'Anda mesti memilih file.',
+                        'msgImageWidthSmall'=>' Lebar fail imej "{name}" mestilah sekurang-kurangnya {size} px (dikesan {dimension} px).',
+                        'msgImageHeightSmall'=>'Ketinggian fail imej "{name}" mestilah sekurang-kurangnya {size} px (dikesan {dimension} px).
+                        di mana:',
+                        'msgImageWidthLarge'=>'Lebar fail imej "{name}" tidak boleh melebihi {size} px (dikesan {dimension} px).',
+                        'msgImageHeightLarge'=>'Ketinggian of image file "{name}" cannot exceed {size} px (detected {dimension} px).'
                     ],
                 ]);
                 CroppieWidget::widget(['id' => 'test-widget', 'clientOptions' => ['enableExif']]);
@@ -246,7 +264,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                 ->label('Berdaftar di bawah PBT')
                 ->widget(Select2::classname(), [
                     'data' => $model::getPbtLocationList(),
-                    'options' => ['placeholder' => 'Select an option'],
+                    'options' => ['placeholder' => 'Pilihan'],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
@@ -262,7 +280,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                 ->widget(DepDrop::classname(), [
                     'type' => DepDrop::TYPE_SELECT2,
                     'data' => [],
-                    'options' => ['id' => 'subcat1-id', 'placeholder' => 'Select ...'],
+                    'options' => ['id' => 'subcat1-id', 'placeholder' => 'Pilihan'],
                     'select2Options' => ['pluginOptions' => ['allowClear' => true]],
                     'pluginOptions' => [
                         'depends' => ['bazar-pbt_location_id'],
@@ -275,10 +293,10 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         </div>
 
         <div class="text-center">
-            <a href="#" class="btn btn-light w-100 mt-5" style="height: 46px;" onclick="resetButton()">Reset</a>
+            <a href="#" class="btn btn-light w-100 mt-5" style="height: 46px;" onclick="resetButton()">Set Semula</a>
         </div>
         <div class="text-center mb-5">
-            <?= Html::submitButton('Submit Listing', ['class' => 'btn btn-md btn-primary mt-3 w-100', 'style'=>'background: #892920; border-color: #892920; height: 46px;', 'name' => 'add-listing-submit-button']) ?>
+            <?= Html::submitButton('Hantar Senarai', ['class' => 'btn btn-md btn-primary mt-3 w-100', 'style'=>'background: #892920; border-color: #892920; height: 46px;', 'name' => 'add-listing-submit-button']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

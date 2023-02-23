@@ -77,7 +77,7 @@ class Bazar extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'whatsapp_no', 'pbt_location_id', 'bazar_location_id', 'status', 'active', 'created_by', 'created_at', 'updated_by', 'updated_at', 'status_by', 'status_at', 'click_count','tag'], 'integer'],
-            [['shop_name', 'cover_image', 'whatsapp_no', 'pbt_location_id', 'bazar_location_id', 'created_by', 'created_at', 'updated_at', 'updated_by'], 'required'],
+            [['shop_name', 'cover_image', 'whatsapp_no', 'pbt_location_id', 'bazar_location_id', 'created_by', 'created_at', 'updated_at', 'updated_by'], 'required', 'message'=>'{attribute} tidak boleh kosong.'],
             [['cover_imageFile'], 'required', 'on'=>'upload'],
             [['cover_image', 'tagline'], 'string'],
             [['cover_imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles'=>5, 'on'=>'upload'],
@@ -99,18 +99,19 @@ class Bazar extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'shop_name' => 'Shop Name',
-            'cover_image' => 'Cover Image',
+            'shop_name' => 'Nama Kedai',
+            'cover_image' => 'Gambar Muka Depan',
             'tagline' => 'Tagline',
-            'tag' => 'Tag',
+            'tag' => 'Kategori',
             'description' => 'Description',
-            'whatsapp_no' => 'Whatsapp No',
-            'pbt_location_id' => 'Pbt Location ID',
-            'bazar_location_id' => 'Bazar Location ID',
+            'whatsapp_no' => 'No Whatsapp',
+            'pbt_location_id' => 'Lokasi Pbt ID',
+            'bazar_location_id' => 'Lokasi Bazar ID',
             'status' => 'Status',
-            'active' => 'Active',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'status_by' => 'Status Daripada',
+            'active' => 'Aktif',
+            'created_at' => 'Dicipta Di',
+            'updated_at' => 'Dikemas Kini Pada',
             'click_count' => 'Click Count',
         ];
     }

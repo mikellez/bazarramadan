@@ -59,7 +59,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         <?php ActiveForm::end(); ?>
 
         <div class="d-flex justify-content-center">
-            <u class="mt-3">Soalan Lazim</u>
+            <a href="/site/faq" target="_blank" style="color:black"><u class="mt-3">Soalan Lazim</u></a>
         </div>
         <div class="d-flex justify-content-center">
             <p class="mt-3 text-muted">PLATS adalah sebuah Inisiatif Kerajaan Selangor di bawah</p>

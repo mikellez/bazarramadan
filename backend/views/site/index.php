@@ -6,7 +6,7 @@ use kartik\grid\GridView;
 
 /** @var yii\web\View $this */
 
-$this->title = 'Bazar Listing';
+$this->title = 'Senarai Bazar';
 
 $gridColumns = [
     ['class' => 'yii\grid\SerialColumn'],
@@ -53,7 +53,7 @@ $gridColumns = [
         ]
     ],
     [
-        'label'=> 'PBT',
+        'label'=> 'Lokasi PBT',
         'attribute'=> 'pbt_location_id',
         'value'=> 'pbtLocation.code',
         'headerOptions'=>[
@@ -64,7 +64,7 @@ $gridColumns = [
         ]
     ],
     [
-        'label'=> 'Location',
+        'label'=> 'Lokasi Bazar',
         'attribute'=> 'bazar_location_id',
         'value'=> 'bazarLocation.name',
         'headerOptions'=>[
@@ -193,6 +193,7 @@ $gridColumns = [
             'condensed' => true,
             'hover' => true,
             'showPageSummary' => false,
+            'summary' => "Menunjukkan <b>{begin}</b>-<b>{end}</b> daripada <b>{totalCount}</b> item.",
             'panel' => [
                 'after' => '',
                 'heading' => '',

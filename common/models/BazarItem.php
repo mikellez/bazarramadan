@@ -33,11 +33,11 @@ class BazarItem extends \yii\db\ActiveRecord
     {
         return [
             [['bazar_id'], 'integer'],
-            [['name','price','tag'], 'required'],
+            [['name','price','tag'], 'required', 'message'=>'{attribute} tidak boleh kosong.'],
             [['name'], 'string'],
             [['price'], 'number'],
-            [['bazar_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bazar::class, 'targetAttribute' => ['bazar_id' => 'id']],
-            [['tag'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::class, 'targetAttribute' => ['tag' => 'id']],
+            [['bazar_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bazar::class, 'targetAttribute' => ['bazar_id' => 'id'], 'message'=>'Anda mesti memilih file.'],
+            [['tag'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::class, 'targetAttribute' => ['tag' => 'id'], 'message'=>'Anda mesti memilih file.'],
         ];
     }
 
@@ -49,9 +49,9 @@ class BazarItem extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'bazar_id' => 'Bazar ID',
-            'name' => 'Name',
-            'price' => 'Price',
-            'tag' => 'Categori',
+            'name' => 'Nama',
+            'price' => 'Harga',
+            'tag' => 'Kategori',
         ];
     }
 

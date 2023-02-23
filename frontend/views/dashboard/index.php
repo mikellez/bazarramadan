@@ -4,7 +4,7 @@ use yii\grid\GridView;
 
 /** @var yii\web\View $this */
 
-$this->title = 'Bazar Listing';
+$this->title = 'Senarai Bazar';
 
 $gridColumns = [
     ['class' => 'yii\grid\SerialColumn'],
@@ -51,7 +51,7 @@ $gridColumns = [
         ]
     ],
     [
-        'label'=> 'PBT',
+        'label'=> 'Lokasi PBT',
         'attribute'=> 'pbt_location_id',
         'value'=> 'pbtLocation.code',
         'headerOptions'=>[
@@ -62,7 +62,7 @@ $gridColumns = [
         ]
     ],
     [
-        'label'=> 'Location',
+        'label'=> 'Lokasi Bazar',
         'attribute'=> 'bazar_location_id',
         'value'=> 'bazarLocation.name',
         'headerOptions'=>[
@@ -108,7 +108,7 @@ $gridColumns = [
     <br/>
     <div class="jumbotron text-center bg-transparent">
         <div class="text-center">
-            <p class="lead">Bazar Listing</p>
+            <p class="lead">Senarai Bazar</p>
         </div>
 
         <!--<h1 class="display-4">Bazar Listing</h1>-->
@@ -125,6 +125,7 @@ $gridColumns = [
             'filterModel' => $searchModel,
             'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm table-responsive'],
             'columns' => $gridColumns,
+            'summary' => "Menunjukkan <b>{begin}</b>-<b>{end}</b> daripada <b>{totalCount}</b> item.",
             'pager' => [
                 'class' => 'yii\bootstrap4\LinkPager'
             ]
