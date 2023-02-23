@@ -117,7 +117,6 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                     <div class="card mb-2">
                         <div class="card-header">
                             Senarai Menu Makanan & Minuman
-                            <button type="button" class="float-right add-item btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Item</button>
                             <div class="clearfix"></div>
                         </div>
                         <div class="card-body container-items"><!-- widgetContainer -->
@@ -168,7 +167,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                                                 ?>
                                             </div>
                                         </div><!-- end:row -->
-                                        <div class="row">
+                                        <div class="row mt-2">
                                             <div class="col-12">
                                                 <button type="button" class="float-right remove-item btn btn-danger btn-sm"><i class="fa fa-minus"></i> Keluarkan Item</button>
 
@@ -180,6 +179,9 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                                 </div>
                             <?php endforeach; ?>
                         </div>
+                            <div class="p-3">
+                                <button type="button" class="float-right add-item btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Item</button>
+                            </div>
                     </div>
                     <?php DynamicFormWidget::end(); ?>
 
