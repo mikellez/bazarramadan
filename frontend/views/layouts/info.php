@@ -35,11 +35,12 @@ AppAsset::register($this);
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="">
-		<li class="nav-item">
-			<a class="nav-link" href="/dashboard/logout">Logout</a>
+		<li class="nav-item d-lg-none">
+			<a class="nav-link " href="/dashboard/logout">Halaman Utama</a>
 		</li>
     </ul>
   </div>
+	<a class="text-muted d-none d-lg-block logout" href="/dashboard/logout">Halaman Utama</a>
 </nav>
 </header>
 

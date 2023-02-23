@@ -37,19 +37,19 @@ AppAsset::register($this);
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="">
 		<li id="form-section-bahagian-depan-kedai-bazar-nav" class="nav-item d-lg-none ">
-			<a href="#bahagian-depan-kedai-bazar" class="text-muted">
+			<a href="#bahagian-depan-kedai-bazar" class="nav-link">
 			<i>
 				<span></span>
 			</i>BAHAGIAN DEPAN KEDAI BAZAR </a>
 		</li>
 		<li id="form-section-maklumat-penjaja-bazar-nav" class="nav-item d-lg-none ">
-			<a href="#menu-dan-gambar-makanan" class="text-muted">
+			<a href="#menu-dan-gambar-makanan" class="nav-link">
 			<i>
 				<span></span>
 			</i>MENU &amp; GAMBAR MAKANAN </a>
 		</li>
 		<li id="form-section-maklumat-lokasi-bazar-ramadan-nav" class="nav-item d-lg-none ">
-			<a href="#maklumat-lokasi-bazar-ramadan" class="text-muted">
+			<a href="#maklumat-lokasi-bazar-ramadan" class="nav-link">
 			<i>
 				<span></span>
 			</i>MAKLUMAT LOKASI BAZAR RAMADAN </a>

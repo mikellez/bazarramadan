@@ -10,7 +10,10 @@ $this->title = 'Bazar Ramadan Plats Selangor';
 <div class="site-index">
 
     <div class="jumbotron text-center bg-transparent">
-        <h1 class="site-heading display-4">Bazar Ramadan</h1>
+        <h1 class="site-heading display-4">
+            <img width="300" height="300" src="<?= Yii::$app->params['backendUrl']?>/storage/Logo PLATS Ramadan.png"/>
+        </h1>
+        <!--<h1 class="site-heading display-4">Bazar Ramadan</h1>-->
 
         <div class="lead mb-3">
             <img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>" width="200px"/>

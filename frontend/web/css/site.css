@@ -240,3 +240,6 @@ nav {
 #loginform-ic_no:focus {
     box-shadow: none;
 }
+.nav-link {
+    color: black !important;
+}
