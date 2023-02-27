@@ -21,7 +21,7 @@ $this->title = 'Soalan Lazim';
 		</ul>
 		<br/>
 		<p class="question">Siapakah yang layak untuk mendaftar gerai bazar mereka di PLATS?</p>
-		<p class="text-muted">Hanya peniaga yang mempunyai lesen untuk membuka gerai bazar oleh Pihak Berkuasa Tempatan di Selangor layak untuk mendaftar di  Bazar Ramadan PLATS.  </p>
+		<p class="text-muted">Hanya peniaga yang mempunyai permit untuk membuka gerai bazar oleh Pihak Berkuasa Tempatan di Selangor layak untuk mendaftar di  Bazar Ramadan PLATS.  </p>
 		<br/>
 		<p class="question">Adakah PLATS akan mengenakan sebarang bayaran kepada saya?</p>
 		<p class="text-muted">Tidak. Bazar Ramadan PLATS adalah sebuah usaha Kerajaan Negeri Selangor untuk mendigitalisasikan peniaga, dan ianya adalah <b>percuma 100%</b> untuk digunakan .  </p>
