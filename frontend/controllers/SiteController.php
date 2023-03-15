@@ -361,7 +361,7 @@ class SiteController extends Controller
             ->where(['bazar.id'=>$id])
             ->one();
 
-        $this->layout = 'listing';
+        $this->layout = 'add-listing';
         return $this->render('listing-detail', [
             'model' => $model
         ]);
@@ -394,6 +394,19 @@ class SiteController extends Controller
         } catch (Exception $e) {
 
             $transaction->rollBack();
+        }
+    }
+
+    public function actionRepopulateBazarItemText() {
+        $bazarItem = \common\models\BazarItem::find()->all();
+
+        foreach($bazarItem as $item) {
+            foreach(explode(' ', $item->name) as $item_name) {
+                $bazarItemText = new \common\models\BazarItemText;
+                $bazarItemText->bazar_item_id = $item->id;
+                $bazarItemText->text = $item_name;
+                $bazarItemText->save();
+            }
         }
     }
 

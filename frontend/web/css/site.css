@@ -15,7 +15,6 @@ main > .container-add-listing {
 
 main > .container-listing {
     padding: 70px 20px 20px;
-    margin-left: 120px;
 }
 
 @media(max-width:767px) {
@@ -280,4 +279,20 @@ nav {
 .search-field > .input-group > .input-group-prepend > .input-group-text {
     border: 0;
     background-color: #ffff;
+}
+
+.lf-overlay {
+    position: absolute; 
+    z-index: 3; 
+    background-color: #242429; 
+    opacity: 0.4; 
+    width: 94%; 
+    height:100%; 
+    border-radius: 20px;
+}
+
+.lf-overlay:hover {
+    background-color: #111112;
+    webkit-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
 }
