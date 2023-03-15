@@ -14,6 +14,7 @@ use Yii;
  * @property int|null $tag
  *
  * @property Bazar $bazar
+ * @property BazarItemText[] $bazarItemTexts
  * @property Tag $tag0
  */
 class BazarItem extends \yii\db\ActiveRecord
@@ -63,6 +64,16 @@ class BazarItem extends \yii\db\ActiveRecord
     public function getBazar()
     {
         return $this->hasOne(Bazar::class, ['id' => 'bazar_id']);
+    }
+
+     /**
+     * Gets query for [[BazarItemTexts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBazarItemTexts()
+    {
+        return $this->hasMany(BazarItemText::class, ['bazar_item_id' => 'id']);
     }
 
     /**

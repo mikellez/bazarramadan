@@ -5,12 +5,14 @@ namespace frontend\controllers;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
+//use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use common\models\search\BazarSearch;
 use common\models\Bazar;
+
+use frontend\controllers\Controller;
 
 /**
  * Add dashboard controller

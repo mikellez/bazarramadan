@@ -5,7 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
+//use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -19,7 +19,10 @@ use common\models\LoginForm;
 use common\models\Bazar;
 use common\models\BazarImage;
 use common\models\BazarItem;
+use common\models\BazarItemText;
 use common\models\UploadForm;
+
+use frontend\controllers\Controller;
 
 /**
  * Add listing controller
@@ -151,6 +154,18 @@ class AddListingController extends Controller
 							$transaction->rollBack();
 							var_dump($modelBazarItem->getErrors());
 							break;
+						}
+
+						foreach(explode(" ",$modelBazarItem->name) as $text) {
+							$modelBazarItemText = new BazarItemText;
+							$modelBazarItemText->bazar_item_id = $modelBazarItem->id;
+							$modelBazarItemText->text = $text;
+							$modelBazarItemText->save();
+							if (! ($flag = $modelBazarItemText->save())) {
+								$transaction->rollBack();
+								var_dump($modelBazarItemText->getErrors());
+								break;
+							}
 						}
 					}
 				}

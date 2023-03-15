@@ -29,6 +29,7 @@ use yii\db\Expression;
  * @property int|null $click_count
  *
  * @property BazarImage[] $bazarImages
+ * @property BazarItems[] $bazarItems
  * @property BazarLocation $bazarLocation
  * @property PbtLocation $pbtLocation
  * @property User $user
@@ -185,6 +186,16 @@ class Bazar extends \yii\db\ActiveRecord
         } else {
             return parent::save($runValidation, $attributeNames);
         }
+    }
+
+     /**
+     * Gets query for [[BazarItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBazarItems()
+    {
+        return $this->hasMany(BazarItem::class, ['bazar_id' => 'id']);
     }
 
     /**

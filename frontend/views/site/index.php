@@ -3,7 +3,11 @@
 /** @var yii\web\View $this */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
+
+use kartik\select2\Select2;
+use kartik\depdrop\DepDrop;
 
 $this->title = 'Bazar Ramadan Plats Selangor';
 ?>
@@ -20,37 +24,77 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         </div>
 
         <?php $form = ActiveForm::begin([
-            'id' => 'login-form',
+            'id' => 'search-form',
+            'action' => ['site/listing'],
+            'method' => 'post',
             'fieldConfig' => [
                 'template' => "{input}"
             ],
         ]); ?>  
 
-
-        <p class="">SILA MASUKKAN NOMBOR KAD PENGENALAN ANDA</p>
         <br/>
-
-        <?= $form->field($model, 'ic_no', [
+        <h4 class="text-muted">Cari juadah bazar Ramadan di seluruh Selangor</h4>
+        <br/>
+        <div class="d-flex justify-content-between" style="border-radius: 10px; padding-top: 16px; box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);background-color: #fff;">
+        <?= $form->field($model, 'pbt_location_id', [
             'options'=>[
-                'class'=>'',
+                'class'=>'form-group search-field',
             ],
-            'template'=>'{input}'
+            'template'=> '{label}{input}'
+        ])
+        ->label(false)
+        ->widget(Select2::classname(), [
+            'data' => \common\models\Bazar::getPbtLocationList(),
+            'options' => ['placeholder' => 'Seluruh selangor'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])
+        ?>
+
+        <div class="vertical"></div>
+
+        <?= $form->field($model, 'bazar_location_id', [
+            'options'=>[
+                'class'=>'form-group search-field',
+            ],
+            'template'=> '{label}{input}'
+        ])
+        ->label(false)
+        ->widget(DepDrop::classname(), [
+            'type' => DepDrop::TYPE_SELECT2,
+            'data' => [],
+            'options' => ['id' => 'subcat1-id', 'placeholder' => 'Semua bazar'],
+            'select2Options' => ['pluginOptions' => ['allowClear' => true]],
+            'pluginOptions' => [
+                'depends' => ['searchform-pbt_location_id'],
+                'url' => Url::to(['/add-listing/bazar-location-list']),
+                'params' => ['input-type-1', 'input-type-2']
+            ]
+        ]);
+        ?>
+
+        <div class="vertical"></div>
+
+        <?= $form->field($model, 'text', [
+            'options'=>[
+                'class'=>'search-field',
+            ],
+            'template'=>'
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">&#128269;</span>
+                    </div>
+                    {input}
+                </div>
+            ',
+            'enableClientValidation'=>false
             
-        ])->textInput([ 'autofocus' => true, 'placeholder'=>'No Kad Pengenalan']) ?>
+        ])
+        ->textInput([ 'autofocus' => true, 'placeholder'=>'Jenis juadah...']) ?>
         <!--<hr class="mt-5" style="border-top: 2px solid #d39e00">-->
-        <br/>
-
-        <p align="left" style="font-style: italic;">Contoh: 800323105512</p>
-
-        <p align="left" class="text-sm" style="font-style: italic;">* Hanya peniaga yang mempunyai permit bazar Ramadan dari Pihak Berkuasa Tempatan layak membuka kedai di Bazar Ramandan PLATS.</p>
-
-        <div class="">
-        </div>
-
-
-        <div class="d-flex justify-content-center">
-            <!--<a class="btn btn-md btn-success mt-3" href="/">Semak Kelayakan</a>-->
-            <?= Html::submitButton('Semak Kelayakan', ['class' => 'btn btn-sm btn-success mt-3', 'style'=>'background: #f37a20; border-color: #f37a20;', 'name' => 'login-button']) ?>
+        
+        <?= Html::submitButton('Cari', ['class' => 'btn btn-sm btn-success', 'style'=>'background: #f37a20; border-color: #f37a20; border-radius: 20px; width: 500px; height: 37px; margin-right: 10px;', 'name' => 'login-button']) ?>
         </div>
 
         <?= Yii::$app->session->getFlash('success')?>
@@ -58,53 +102,6 @@ $this->title = 'Bazar Ramadan Plats Selangor';
 
         <?php ActiveForm::end(); ?>
 
-        <div class="d-flex justify-content-center">
-            <a href="/site/faq" target="_blank" style="color:black"><u class="mt-3">Soalan Lazim</u></a>
-        </div>
-        <div class="d-flex justify-content-center">
-            <p class="mt-3 text-muted">PLATS adalah sebuah Inisiatif Kerajaan Selangor di bawah</p>
-        </div>
-        <div class="d-flex justify-content-center">
-            <img src="<?=Yii::$app->params['backendUrl'].'/storage/mbi_pnsb_logo@2x.png'?>" width="220px"/>
-        </div>
-        <div class="d-flex justify-content-center">
-            <p class="mt-3 text-muted">dengan kerjasama Pihak Berkuasa Tempatan Selangor</p>
-        </div>
-        <div class="d-flex justify-content-center d-lg-none">
-            <!--<div class="row">-->
-            <?php foreach(\common\models\PbtLocation::find()->all() as $location):?>
-                <!--<div class="col-sm-4">
-                    <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= $location->code?>.png"/>
-                </div>-->
-            <?php endforeach;?>
-            <!--</div>-->
-            <?php 
-                $items = \common\models\PbtLocation::find()->all();
-                $numberOfColumns = 3;
-                $bootstrapColWidth = 12 / $numberOfColumns ;
-            
-                $arrayChunks = array_chunk($items, $numberOfColumns);
-                foreach($arrayChunks as $items) {
-                    echo '<div class="row">';
-                    foreach($items as $item) {
-                        echo '<div class="col-lg-12 col-md-'.$bootstrapColWidth.'">';
-                        // your item
-                        echo '<img width="30" height="30" src="'.Yii::$app->params['backendUrl'].'/storage/'.strtolower($item->code).'.png"/>';
-                        echo '</div>';
-                    }
-                    echo '</div>';
-                }   
-            ?>
-            <!--<img src="<?=Yii::$app->params['backendUrl'].'/storage/pbt_logo@2x.png'?>" width="400px"/>-->
-        </div>
-        <div class="d-none d-lg-block text-center">
-            <?php foreach(\common\models\PbtLocation::find()->all() as $location):?>
-                    <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= strtolower($location->code)?>.png"/>
-                <!--<div class="col-sm-4">
-                    <img width="30" height="30" src="<?= Yii::$app->params['backendUrl']?>/storage/<?= $location->code?>.png"/>
-                </div>-->
-            <?php endforeach;?>
-        </div>
     </div>
 
 </div>

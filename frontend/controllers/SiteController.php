@@ -7,14 +7,23 @@ use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
+//use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use yii\data\ActiveDataProvider;
+use yii\data\ActiveDataFilter;
+
+use frontend\controllers\Controller;
+use common\models\SearchForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+
+use common\models\Bazar;
+use common\models\search\BazarSearch;
+use common\models\Order;
+use common\models\OrderDetail;
 
 /**
  * Site controller
@@ -75,32 +84,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        //$this->layout = 'main';
-        $model = new LoginForm();
+        $this->layout = 'listing';
+        $model = new SearchForm();
         if(Yii::$app->request->post()) {
+            if($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $textArr = explode(" ", $model->text);
 
-            if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                Yii::$app->session->setFlash('success', '
-                    <div class="mt-3 alert alert-success" role="alert">
-                        <p><b>Tahniah!</b> MyKad / Kad Pengenalan anda: '.Yii::$app->user->identity->ic_no.' telah berdaftar dengan PBT. Anda layak memohon.</p>
-                    </div>
-                    ');
-                //return $this->goBack();
-                return $this->redirect('/dashboard');
-            } else {
-                $model->ic_no = '';
-
-                Yii::$app->session->setFlash('error', '
-                    <div class="mt-3 alert alert-danger" role="alert">
-                        <p><b>Maaf!</b> Nombor MyKad/Kad Pengenalan tidak berdaftar dengan mana-mana PBT.</p>
-                    </div>
-                ');
-
-                return $this->render('index', [
-                    'model' => $model,
-                ]);
+                Yii::$app->response->redirect(['/site/listing','pbt_location_id' => $model->pbt_location_id, 'bazar_location_id' => $model->bazar_location_id, 'text'=>$model->text]);
             }
-
         }
 
         return $this->render('index', [
@@ -301,4 +292,109 @@ class SiteController extends Controller
     public function actionFaq() {
         return $this->render('faq');
     }
+
+    public function actionListing() {
+        $model = new SearchForm();
+
+        $searchModel = new BazarSearch();
+
+        $filter = new ActiveDataFilter([
+            'searchModel' => 'common\models\BazarSearch'
+        ]);
+        
+        $filterCondition = null;
+        
+        // You may load filters from any source. For example,
+        // if you prefer JSON in request body,
+        // use Yii::$app->request->getBodyParams() below:
+        if ($filter->load(\Yii::$app->request->get())) { 
+            $filterCondition = $filter->build();
+            if ($filterCondition === false) {
+                // Serializer would get errors out of it
+                return $filter;
+            }
+        }
+        
+        $query = Bazar::find()
+            ->select('bazar.*')
+            ->joinWith('bazarItems')
+            ->joinWith('bazarItems.bazarItemTexts')
+            ->groupBy(['bazar.id']);
+        
+        if(Yii::$app->request->post()) {
+            if($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $textArr = explode(" ", $model->text);
+
+                $query = $query
+                    ->where(['in', 'bazar_item_text.text', $textArr])
+                    ->orWhere(['in', 'bazar_item.tag', $textArr]);
+                    //->createCommand()
+                    //->getRawSql();
+            }
+        }
+
+        if ($filterCondition !== null) {
+            $query->andWhere($filterCondition);
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        // returns an array of Post objects
+        $models = $dataProvider->getModels();
+
+        $this->layout = 'listing';
+        return $this->render('listing', [
+            'models' => $models,
+            'searchModel' => $model,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionListingDetail($id) {
+        $model = Bazar::find()
+            ->select('bazar.*')
+            ->joinWith('bazarItems')
+            ->joinWith('bazarItems.bazarItemTexts')
+            ->groupBy(['bazar.id'])
+            ->where(['bazar.id'=>$id])
+            ->one();
+
+        $this->layout = 'listing';
+        return $this->render('listing-detail', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionOrder() {
+        $bazar_id = Yii::$app->request->post('bazar_id');
+
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $order = Order::find(['bazar_id'=>$bazar_id])->one();
+            if(!$order) {
+                $order = new Order;
+                $order->bazar_id = $bazar_id;
+                $order->total_order = 1;
+            }
+
+            if($order->save()) {
+                $order_detail = new OrderDetail;
+                $order_detail->order_id = $order->id;
+                $order_detail->ip_address = $_SERVER['REMOTE_ADDR'];
+                $order_detail->created_at = time();
+                if($order_detail->save()) {
+                    $order->total_order = $order->total_order + 1;
+                    $order->save();
+                }
+            }
+
+            $transaction->commit();
+        } catch (Exception $e) {
+
+            $transaction->rollBack();
+        }
+    }
+
 }

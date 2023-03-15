@@ -13,6 +13,11 @@ main > .container-add-listing {
     margin-left: 120px;
 }
 
+main > .container-listing {
+    padding: 70px 20px 20px;
+    margin-left: 120px;
+}
+
 @media(max-width:767px) {
     main > .container {
         padding: 70px 0px 20px;
@@ -242,4 +247,37 @@ nav {
 }
 .nav-link {
     color: black !important;
+}
+.search-field {
+    margin-right:10px;
+    width: 100%;
+}
+
+.search-field > .select2-container > .selection > .select2-selection {
+    border: 0;
+    box-shadow: none;
+    background-color: none;
+}
+
+.search-field > .select2-container > .selection > .select2-selection > .select2-selection__arrow {
+    border-left: 0;
+}
+
+.vertical {
+    margin-right: 10px;
+    border-left: 3px solid gainsboro;
+    height: 38px;
+}
+
+.select2-container--krajee-bs4.select2-container--disabled .select2-selection, .select2-container--krajee-bs4.select2-container--disabled .select2-selection--multiple .select2-selection__choice {
+    background-color: #ffff;
+}
+
+.search-field > .input-group > .form-control {
+    border: 0;
+}
+
+.search-field > .input-group > .input-group-prepend > .input-group-text {
+    border: 0;
+    background-color: #ffff;
 }
