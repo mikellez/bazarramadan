@@ -263,7 +263,7 @@ nav {
 }
 
 .vertical {
-    margin-right: 10px;
+    /*margin-right: 10px;*/
     border-left: 3px solid gainsboro;
     height: 38px;
 }

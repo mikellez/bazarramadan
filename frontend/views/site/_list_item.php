@@ -1,5 +1,5 @@
 
-<div class="order col-sm-6 col-md-6 col-lg-4 mb-5" style="border-radius: 2px; width: 250px; height: 250px; position:relative;">
+<div class="order col-sm-12 col-md-12 col-lg-4 mb-5" style="border-radius: 2px; /*width: 250px;*/ height: 250px; position:relative;">
 	<a href="/site/listing-detail?id=<?= $model->id?>">
 	<div class="lf-overlay"></div>
 	<div style="width:100%; height: 100%; background-image: url('<?= Yii::$app->params['backendUrl']?>/storage/uploads<?= $model->cover_image?>'); background-position: 50%; background-size: cover; border-radius:20px;">
