@@ -34,10 +34,14 @@ $colsCount = 3;
 			 'spinnerSrc' => '',
 			 'spinnerTemplate' => '',
 			 'linkPager'     => [
-				  'prevPageCssClass' => 'btn-link prev',
-				  'nextPageCssClass' => 'btn-link next',
-				  'prevPageLabel' => '<span class="prev-page">prev</span>',
-				  'nextPageLabel' => '<span class="next-page">next</span>',
+				'prevPageCssClass' => 'page-item prev',
+				'nextPageCssClass' => 'page-item next',
+				'prevPageLabel' => '<span class="page-link">prev</span>',
+				'nextPageLabel' => '<span class="">next</span>',
+				'pageCssClass' => 'page-item',
+				'linkOptions' => [
+					'class'=>'page-link'
+				]
 			 ],
 			 'linkPagerOptions'     => [
 				  'class' => 'pagination',
