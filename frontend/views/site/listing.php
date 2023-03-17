@@ -28,7 +28,7 @@ $colsCount = 3;
 			 'next' => '.next a',
 			 'paginationSelector' => '.list-view .pagination',
 			 'triggerText' => Yii::t('app', 'Show more'),
-			 'triggerTemplate' => '<span class="reveal-btn">{text}</span>',
+			 'triggerTemplate' => '<span class="reveal-btn btn btn-sm btn-outline-primary" style="margin-top: 0%; margin-left: 53%;">{text}</span>',
 			 'noneLeftText' => '',
 			 'noneLeftTemplate' => '',
 			 'spinnerSrc' => '',
@@ -36,17 +36,18 @@ $colsCount = 3;
 			 'linkPager'     => [
 				'prevPageCssClass' => 'page-item prev',
 				'nextPageCssClass' => 'page-item next',
-				'prevPageLabel' => '<span class="page-link">prev</span>',
-				'nextPageLabel' => '<span class="">next</span>',
+				'prevPageLabel' => 'prev',
+				'nextPageLabel' => 'next',
 				'pageCssClass' => 'page-item',
 				'linkOptions' => [
 					'class'=>'page-link'
-				]
+				],
+				'disabledListItemSubTagOptions'=>['class'=>'page-link']
 			 ],
 			 'linkPagerOptions'     => [
 				  'class' => 'pagination',
 			 ],
-			 'linkPagerWrapperTemplate' => '<div class="button-news-more"><div class="wrapper"><div class="paging">{pager}</div></div></div>',
+			 'linkPagerWrapperTemplate' => '<div class="button-news-more" style="margin-top: 25px; margin-left: 50%;"><div class="wrapper"><div class="paging">{pager}</div></div></div>',
 			 'eventOnPageChange' => 'function() {{{ias}}.hidePagination();}',
 			 'eventOnReady' => 'function() {{{ias}}.restorePagination();}',
 		],
