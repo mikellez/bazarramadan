@@ -33,7 +33,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'approve', 'reject', 'approveAll', 'rejectAll'],
+                        'actions' => ['logout', 'index', 'approve', 'reject', 'approveAll', 'rejectAll', 'dashboard'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -225,5 +225,52 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionDashboard()
+    {
+        $analysisModels = Yii::$app->db->createCommand("
+            SELECT 
+                a.code pbt_location_code, count(b.id) jumlah_peniaga, count(c.id) jumlah_berdaftar
+            FROM 
+                pbt_location a 
+            LEFT JOIN user b on b.pbt_location_id = a.id
+            LEFT JOIN bazar c on c.user_id = b.id
+            GROUP BY a.code
+        ")->queryAll();
+
+        $pageModels = Yii::$app->db->createCommand("
+            SELECT 
+                a.*
+            FROM 
+                page a 
+        ")->queryAll();
+
+        $whatsappModels = Yii::$app->db->createCommand("
+            SELECT 
+                c.code pbt_location_code, count(a.total_order) total_order
+            FROM 
+                `order` a 
+            LEFT JOIN bazar b on b.id = a.bazar_id
+            LEFT JOIN pbt_location c on c.id = b.pbt_location_id        
+            GROUP BY c.code
+        ")->queryAll();
+
+        $top20Models = Yii::$app->db->createCommand("
+            SELECT 
+                b.shop_name, c.code pbt_location_code, a.total_order
+            FROM 
+                `order` a 
+            LEFT JOIN bazar b on b.id = a.bazar_id
+            LEFT JOIN pbt_location c on c.id = b.pbt_location_id        
+            LIMIT 20
+        ")->queryAll();
+
+        return $this->render('dashboard', [
+            'analysisModels'=>$analysisModels,
+            'pageModels'=>$pageModels,
+            'whatsappModels'=>$whatsappModels,
+            'top20Models'=>$top20Models
+        ]);            
     }
 }

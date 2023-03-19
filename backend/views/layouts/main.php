@@ -75,6 +75,12 @@ $pbt_location = \common\models\PbtLocation::find()->all();
                     </li>
                     <?php endif;?>
                 <?php endforeach;?>
+                    <?php if(Yii::$app->user->can('superAdmin')):?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Yii::$app->getUrlManager()->baseUrl?>/site/dashboard"><i class="fa fa-dashboard fa-lg"></i>
+                        <span class="identity">&nbsp; Dashboard</span></a>
+                    </li>
+                    <?php endif;?>
 				</ul>
 			</div>
         </nav>

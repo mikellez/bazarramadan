@@ -31,7 +31,7 @@ $carousel_item = [];
 </div>
 <div class="d-flex justify-content-between mt-5">
 	<h2><?= $model->shop_name?></h2> 
-	<button class="pr-3 pl-3" id="btn-whatsapp_no" style="border: 1.5px solid rgba(0,0,0,.15); border-radius: 50px;"><i class="fa fa-whatsapp"></i>&nbsp;&nbsp;Tempah di Whatsapp</button>
+	<button class="pr-3 pl-3" id="btn-whatsapp_no" style="border: 1.5px solid rgba(0,0,0,.15); border-radius: 50px;" onclick="window.location.href='https://wa.me/<?= $model->whatsapp_no?>'"><i class="fa fa-whatsapp" ></i>&nbsp;&nbsp;Tempah di Whatsapp</button>
 </div>
 <p class="text-muted"><?= $model->tagline?></p>
 <table class="mt-5 mb-5">

@@ -361,21 +361,21 @@ class SiteController extends Controller
             ->where(['bazar.id'=>$id])
             ->one();
 
-        $this->layout = 'add-listing';
+        $this->layout = 'listing';
         return $this->render('listing-detail', [
             'model' => $model
         ]);
     }
 
     public function actionOrder() {
-        $bazar_id = Yii::$app->request->post('bazar_id');
+        $bazar_id = intval(Yii::$app->request->post('bazar_id'));
 
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            $order = Order::find(['bazar_id'=>$bazar_id])->one();
+            $order = Order::find()->where(['bazar_id'=>$bazar_id])->one();
             if(!$order) {
                 $order = new Order;
-                $order->bazar_id = $bazar_id;
+                $order->bazar_id = 1;
                 $order->total_order = 1;
             }
 
@@ -387,13 +387,18 @@ class SiteController extends Controller
                 if($order_detail->save()) {
                     $order->total_order = $order->total_order + 1;
                     $order->save();
+                } else {
+                   var_dump($order_detail->getErrors());die;
                 }
+            } else {
+                var_dump($order->getErrors());die;
             }
 
             $transaction->commit();
         } catch (Exception $e) {
 
             $transaction->rollBack();
+            echo 'failed';
         }
     }
 
