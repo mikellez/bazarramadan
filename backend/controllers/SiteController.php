@@ -244,11 +244,13 @@ class SiteController extends Controller
                 a.*
             FROM 
                 page a 
+            WHERE 
+                name NOT IN ('site/error','site/repopulate-bazar-item-text', 'add-listing/bazar-location-list')
         ")->queryAll();
 
         $whatsappModels = Yii::$app->db->createCommand("
             SELECT 
-                c.code pbt_location_code, count(a.total_order) total_order
+                c.code pbt_location_code, sum(a.total_order) total_order
             FROM 
                 `order` a 
             LEFT JOIN bazar b on b.id = a.bazar_id
