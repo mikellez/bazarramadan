@@ -250,7 +250,7 @@ class SiteController extends Controller
 
         $whatsappModels = Yii::$app->db->createCommand("
             SELECT 
-                c.code pbt_location_code, sum(a.total_order) total_order
+                ANY_VALUE(c.code) pbt_location_code, ANY_VALUE(sum(a.total_order)) total_order
             FROM 
                 `order` a 
             LEFT JOIN bazar b on b.id = a.bazar_id
@@ -259,16 +259,14 @@ class SiteController extends Controller
         ")->queryAll();
 
         $top20Models = Yii::$app->db->createCommand("
-            SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
-
             SELECT 
-                b.shop_name, c.code pbt_location_code, sum(a.total_order) total_order
+                ANY_VALUE(b.shop_name) shop_name, ANY_VALUE(c.code) pbt_location_code, ANY_VALUE(sum(a.total_order)) total_order
             FROM 
                 `order` a 
             LEFT JOIN bazar b on b.id = a.bazar_id
             LEFT JOIN pbt_location c on c.id = b.pbt_location_id        
             GROUP BY b.id
-            LIMIT 20
+            LIMIT 20;
         ")->queryAll();
 
         return $this->render('dashboard', [
