@@ -325,11 +325,14 @@ class SiteController extends Controller
             if($model->load(Yii::$app->request->post()) && $model->validate()) {
                 $textArr = explode(" ", $model->text);
 
-                $query = $query
-                    ->where(['in', 'bazar_item_text.text', $textArr])
-                    ->orWhere(['in', 'bazar_item.tag', $textArr]);
-                    //->createCommand()
-                    //->getRawSql();
+                if($textArr[0]) {
+                    $query = $query
+                        ->where(['in', 'bazar_item_text.text', $textArr])
+                        ->orWhere(['in', 'bazar_item.tag', $textArr]);
+                        //->createCommand()
+                        //->getRawSql();
+
+                }
             }
         }
 

@@ -21,7 +21,7 @@ class SearchForm extends Model
     public function rules()
     {
         return [
-            [['text'], 'required'],
+            //[['text'], 'required'],
             [['text'], 'string'],
         ];
     }
