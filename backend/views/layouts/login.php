@@ -38,11 +38,11 @@ $pbt_location = \common\models\PbtLocation::find()->all();
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="">
             <li class="nav-item d-lg-none">
-                <a class="nav-link" href="https://bazarramadan.platselangor.com/site/logout">Halaman Utama</a>
+                <a class="nav-link" href="https://bazarramadan.platselangor.com">Halaman Utama</a>
             </li>
         </ul>
     </div>
-	<a class="text-muted d-none d-lg-block logout" href="https://bazarramadan.platselangor.com/site/logout">Halaman Utama</a>
+	<a class="text-muted d-none d-lg-block logout" href="https://bazarramadan.platselangor.com">Halaman Utama</a>
 </nav>
 
 <div class="container">
