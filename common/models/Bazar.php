@@ -30,6 +30,7 @@ use yii\db\Expression;
  *
  * @property BazarImage[] $bazarImages
  * @property BazarItems[] $bazarItems
+ * @property BazarTexts[] $bazarTexts
  * @property BazarLocation $bazarLocation
  * @property PbtLocation $pbtLocation
  * @property User $user
@@ -196,6 +197,16 @@ class Bazar extends \yii\db\ActiveRecord
     public function getBazarItems()
     {
         return $this->hasMany(BazarItem::class, ['bazar_id' => 'id']);
+    }
+
+     /**
+     * Gets query for [[BazarTexts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBazarTexts()
+    {
+        return $this->hasMany(BazarText::class, ['bazar_id' => 'id']);
     }
 
     /**

@@ -19,7 +19,7 @@ use common\models\LoginForm;
 use common\models\Bazar;
 use common\models\BazarImage;
 use common\models\BazarItem;
-use common\models\BazarItemText;
+use common\models\BazarText;
 use common\models\UploadForm;
 
 use frontend\controllers\Controller;
@@ -125,6 +125,29 @@ class AddListingController extends Controller
 
 			try {
 				if ($flag = $model->save()) {
+					foreach(explode(" ",$model->shop_name) as $text) {
+						$modelBazarText = new BazarText;
+						$modelBazarText->bazar_id = $model->id;
+						$modelBazarText->text = $text;
+						$modelBazarText->save();
+						if (! ($flag = $modelBazarText->save())) {
+							$transaction->rollBack();
+							var_dump($modelBazarText->getErrors());
+							break;
+						}
+					}
+
+					foreach(explode(" ",$model->tagline) as $text) {
+						$modelBazarText = new BazarText;
+						$modelBazarText->bazar_id = $model->id;
+						$modelBazarText->text = $text;
+						$modelBazarText->save();
+						if (! ($flag = $modelBazarText->save())) {
+							$transaction->rollBack();
+							var_dump($modelBazarText->getErrors());
+							break;
+						}
+					}
 
 					if ($modelUploadForm->imageFile) {
 						foreach ($modelUploadForm->imageFile as $value) {
@@ -157,13 +180,13 @@ class AddListingController extends Controller
 						}
 
 						foreach(explode(" ",$modelBazarItem->name) as $text) {
-							$modelBazarItemText = new BazarItemText;
-							$modelBazarItemText->bazar_item_id = $modelBazarItem->id;
-							$modelBazarItemText->text = $text;
-							$modelBazarItemText->save();
-							if (! ($flag = $modelBazarItemText->save())) {
+							$modelBazarText = new BazarText;
+							$modelBazarText->bazar_id = $modelBazarItem->bazar_id;
+							$modelBazarText->text = $text;
+							$modelBazarText->save();
+							if (! ($flag = $modelBazarText->save())) {
 								$transaction->rollBack();
-								var_dump($modelBazarItemText->getErrors());
+								var_dump($modelBazarText->getErrors());
 								break;
 							}
 						}

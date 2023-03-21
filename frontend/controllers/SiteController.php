@@ -317,18 +317,32 @@ class SiteController extends Controller
         
         $query = Bazar::find()
             ->select('bazar.*')
+            ->joinWith('bazarTexts')
             ->joinWith('bazarItems')
-            ->joinWith('bazarItems.bazarItemTexts')
             ->groupBy(['bazar.id']);
         
         if(Yii::$app->request->post()) {
             if($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $query = $query
+                    ->where(['=', 1, 1]);
+
                 $textArr = explode(" ", $model->text);
+
+                if(Yii::$app->request->post('SearchForm')['pbt_location_id']) {
+                    $query = $query->andWhere(['=', 'bazar.pbt_location_id', Yii::$app->request->post('SearchForm')['pbt_location_id']]);
+                }
+                if(Yii::$app->request->post('SearchForm')['bazar_location_id']) {
+                    $query = $query->andWhere(['=', 'bazar.bazar_location_id', Yii::$app->request->post('SearchForm')['bazar_location_id']]);
+                }
 
                 if($textArr[0]) {
                     $query = $query
-                        ->where(['in', 'bazar_item_text.text', $textArr])
-                        ->orWhere(['in', 'bazar_item.tag', $textArr]);
+                        ->andWhere([
+                            'or',
+                            ['in', 'bazar_text.text', $textArr],
+                            ['in', 'bazar_item.tag', $textArr],
+                        ]);
+
                         //->createCommand()
                         //->getRawSql();
 
@@ -359,7 +373,6 @@ class SiteController extends Controller
         $model = Bazar::find()
             ->select('bazar.*')
             ->joinWith('bazarItems')
-            ->joinWith('bazarItems.bazarItemTexts')
             ->groupBy(['bazar.id'])
             ->where(['bazar.id'=>$id])
             ->one();
@@ -406,15 +419,42 @@ class SiteController extends Controller
     }
 
     public function actionRepopulateBazarItemText() {
+        $bazar = \common\models\Bazar::find()->all();
         $bazarItem = \common\models\BazarItem::find()->all();
 
-        foreach($bazarItem as $item) {
-            foreach(explode(' ', $item->name) as $item_name) {
-                $bazarItemText = new \common\models\BazarItemText;
-                $bazarItemText->bazar_item_id = $item->id;
-                $bazarItemText->text = $item_name;
-                $bazarItemText->save();
+        $transaction = Yii::$app->db->beginTransaction();
+
+        try {
+            foreach($bazarItem as $item) {
+                foreach(explode(' ', $item->name) as $item_name) {
+                    $bazarText = new \common\models\BazarText;
+                    $bazarText->bazar_id = $item->bazar_id;
+                    $bazarText->text = $item_name;
+                    $bazarText->save();
+                }
             }
+
+            foreach($bazar as $item) {
+                foreach(explode(' ', $item->shop_name) as $item_name) {
+                    $bazarText = new \common\models\BazarText;
+                    $bazarText->bazar_id = $item->id;
+                    $bazarText->text = $item_name;
+                    $bazarText->save();
+                }
+
+                foreach(explode(' ', $item->tagline) as $item_name) {
+                    $bazarText = new \common\models\BazarText;
+                    $bazarText->bazar_id = $item->id;
+                    $bazarText->text = $item_name;
+                    $bazarText->save();
+                }
+            }
+
+            $transaction->commit();
+
+        } catch(Exception $e) {
+
+            $transaction->rollBack();
         }
     }
 

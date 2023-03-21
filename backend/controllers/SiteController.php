@@ -182,7 +182,7 @@ class SiteController extends Controller
             $modelPbtLocation = PbtLocation::findOne(Yii::$app->user->identity->pbt_location_id);
 		    $dataProvider->query->andWhere(['=', 'pbt_location_id', $modelPbtLocation->id]);
         }
-
+        
         return $this->render('index', [
             'modelPbtLocation'=>$modelPbtLocation,
             'searchModel' => $searchModel,
@@ -201,7 +201,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $this->layout = 'blank';
+        $this->layout = 'login';
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
