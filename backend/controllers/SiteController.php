@@ -265,7 +265,6 @@ class SiteController extends Controller
                 `order` a 
             LEFT JOIN bazar b on b.id = a.bazar_id
             LEFT JOIN pbt_location c on c.id = b.pbt_location_id        
-            GROUP BY c.code
             LIMIT 20
         ")->queryAll();
 
