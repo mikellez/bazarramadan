@@ -21,7 +21,7 @@ class SearchForm extends Model
     public function rules()
     {
         return [
-            [['pbt_location_id', 'bazar_location_id', 'text'], 'required'],
+            [['text'], 'required'],
             [['text'], 'string'],
         ];
     }
