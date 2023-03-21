@@ -27,9 +27,6 @@ $this->title = 'Bazar Ramadan Plats Selangor';
             'id' => 'search-form',
             'action' => ['site/listing'],
             'method' => 'post',
-            'fieldConfig' => [
-                'template' => "{input}"
-            ],
         ]); ?>  
 
         <br/>
@@ -42,7 +39,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                 <?= $form->field($model, 'pbt_location_id', [
                     'options'=>[
                         'class'=>'form-group search-field',
-                        'value'=>null
+                        'value'=>2
                     ],
                     'template'=> '{label}{input}'
                 ])
@@ -51,10 +48,13 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                     'data' => \common\models\Bazar::getPbtLocationList(),
                     'options' => ['placeholder' => 'Seluruh selangor'],
                     'pluginOptions' => [
-                        'allowClear' => true
+                        'allowClear' => true,
+                        'cache'=>false
                     ],
                 ])
+
                 ?>
+                <?php echo $model->pbt_location_id;?>
                 
             </div>
             <div class="col-lg-4 col-md-12">
@@ -121,3 +121,15 @@ $this->title = 'Bazar Ramadan Plats Selangor';
     </div>
 
 </div>
+
+<?php 
+$js = <<<JS
+    $(document).ready(function() {
+        window.onpageshow = function(event) {
+            document.getElementById("searchform-pbt_location_id").value = null ;
+        };
+    });
+JS;
+
+$this->registerJs($js, $this::POS_END);
+?>

@@ -86,6 +86,8 @@ class SiteController extends Controller
     {
         $this->layout = 'listing';
         $model = new SearchForm();
+        $model->bazar_location_id = null;
+        $model->pbt_location_id = null;
 
         return $this->render('index', [
             'model' => $model
@@ -288,6 +290,8 @@ class SiteController extends Controller
 
     public function actionListing() {
         $model = new SearchForm();
+        $model->bazar_location_id = null;
+        $model->pbt_location_id = null;
 
         $searchModel = new BazarSearch();
 
@@ -341,8 +345,10 @@ class SiteController extends Controller
 
                 }
 
-                //$query = $query->createCommand()
-                    //->getRawSql();
+                $query = $query->createCommand()
+                    ->getRawSql();
+
+                    var_dump($query);die;
             }
         }
 
