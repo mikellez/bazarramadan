@@ -260,11 +260,12 @@ class SiteController extends Controller
 
         $top20Models = Yii::$app->db->createCommand("
             SELECT 
-                b.shop_name, c.code pbt_location_code, a.total_order
+                b.shop_name, c.code pbt_location_code, SUM(a.total_order) total_order
             FROM 
                 `order` a 
             LEFT JOIN bazar b on b.id = a.bazar_id
             LEFT JOIN pbt_location c on c.id = b.pbt_location_id        
+            GROUP BY c.code
             LIMIT 20
         ")->queryAll();
 
