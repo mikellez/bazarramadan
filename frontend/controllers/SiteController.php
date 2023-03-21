@@ -328,10 +328,12 @@ class SiteController extends Controller
 
                 $textArr = explode(" ", $model->text);
 
-                if(Yii::$app->request->post('SearchForm')['pbt_location_id']) {
+                $search = Yii::$app->request->post('SearchForm');
+
+                if(isset($search['pbt_location_id']) && $search['pbt_location_id']) {
                     $query = $query->andWhere(['=', 'bazar.pbt_location_id', Yii::$app->request->post('SearchForm')['pbt_location_id']]);
                 }
-                if(Yii::$app->request->post('SearchForm')['bazar_location_id']) {
+                if(isset($search['bazar_location_id']) && $search['bazar_location_id']) {
                     $query = $query->andWhere(['=', 'bazar.bazar_location_id', Yii::$app->request->post('SearchForm')['bazar_location_id']]);
                 }
 
