@@ -42,6 +42,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                 <?= $form->field($model, 'pbt_location_id', [
                     'options'=>[
                         'class'=>'form-group search-field',
+                        'value'=>null
                     ],
                     'template'=> '{label}{input}'
                 ])

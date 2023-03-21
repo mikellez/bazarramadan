@@ -86,13 +86,6 @@ class SiteController extends Controller
     {
         $this->layout = 'listing';
         $model = new SearchForm();
-        if(Yii::$app->request->post()) {
-            if($model->load(Yii::$app->request->post()) && $model->validate()) {
-                $textArr = explode(" ", $model->text);
-
-                Yii::$app->response->redirect(['/site/listing','pbt_location_id' => $model->pbt_location_id, 'bazar_location_id' => $model->bazar_location_id, 'text'=>$model->text]);
-            }
-        }
 
         return $this->render('index', [
             'model' => $model
@@ -330,10 +323,10 @@ class SiteController extends Controller
 
                 $search = Yii::$app->request->post('SearchForm');
 
-                if(isset($search['pbt_location_id']) && $search['pbt_location_id']) {
+                if(isset($search['pbt_location_id']) && $search['pbt_location_id'] && $search['pbt_location_id'] != "") {
                     $query = $query->andWhere(['=', 'bazar.pbt_location_id', Yii::$app->request->post('SearchForm')['pbt_location_id']]);
                 }
-                if(isset($search['bazar_location_id']) && $search['bazar_location_id']) {
+                if(isset($search['bazar_location_id']) && $search['bazar_location_id'] && $search['bazar_location_id'] != "") {
                     $query = $query->andWhere(['=', 'bazar.bazar_location_id', Yii::$app->request->post('SearchForm')['bazar_location_id']]);
                 }
 
@@ -345,10 +338,11 @@ class SiteController extends Controller
                             ['in', 'bazar_item.tag', $textArr],
                         ]);
 
-                        //->createCommand()
-                        //->getRawSql();
 
                 }
+
+                //$query = $query->createCommand()
+                    //->getRawSql();
             }
         }
 
