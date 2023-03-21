@@ -317,7 +317,7 @@ class SiteController extends Controller
         if(Yii::$app->request->post()) {
             if($model->load(Yii::$app->request->post()) && $model->validate()) {
                 $query = $query
-                    ->where(['=', 1, 1]);
+                    ->where(['=', 'status', Bazar::STATUS_APPROVE]);
 
                 $textArr = explode(" ", $model->text);
 
