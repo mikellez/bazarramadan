@@ -345,9 +345,9 @@ class SiteController extends Controller
 
                 }
 
-                $query = $query->createCommand()
+                /*$query = $query->createCommand()
                     ->getRawSql();
-                    var_dump($query);die;
+                    var_dump($query);die;*/
             }
         }
 
