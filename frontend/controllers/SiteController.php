@@ -313,12 +313,11 @@ class SiteController extends Controller
             ->joinWith('bazarTexts')
             ->joinWith('bazarItems')
             ->joinWith('bazarItems.tag0')
+            ->where(['=', 'status', Bazar::STATUS_APPROVE])
             ->groupBy(['bazar.id']);
         
         if(Yii::$app->request->post()) {
             if($model->load(Yii::$app->request->post()) && $model->validate()) {
-                $query = $query
-                    ->where(['=', 'status', Bazar::STATUS_APPROVE]);
 
                 $textArr = explode(" ", $model->text);
 
@@ -345,9 +344,9 @@ class SiteController extends Controller
 
                 }
 
-                /*$query = $query->createCommand()
+                $query = $query->createCommand()
                     ->getRawSql();
-                    var_dump($query);die;*/
+                    var_dump($query);die;
             }
         }
 
