@@ -312,6 +312,7 @@ class SiteController extends Controller
             ->select('bazar.*')
             ->joinWith('bazarTexts')
             ->joinWith('bazarItems')
+            ->joinWith('bazarItems.tag0')
             ->groupBy(['bazar.id']);
         
         if(Yii::$app->request->post()) {
@@ -334,15 +335,19 @@ class SiteController extends Controller
                     $query = $query
                         ->andWhere([
                             'or',
-                            ['in', 'bazar_text.text', $textArr],
-                            ['in', 'bazar_item.tag', $textArr],
+                            //['in', 'bazar_text.text', $textArr],
+                            //['in', 'bazar_item.tag', $textArr],
+                            "MATCH(bazar_text.text) AGAINST ('*".$model->text."*' IN BOOLEAN MODE)",
+                            "MATCH(tag.name) AGAINST ('*".$model->text."*' IN BOOLEAN MODE)",
                         ]);
+                        //$query = $query->andWhere("MATCH(bazar_text.text) AGAINST ('*".$model->text."*' IN BOOLEAN MODE)");
 
 
                 }
 
-                //$query = $query->createCommand()
-                    //->getRawSql();
+                $query = $query->createCommand()
+                    ->getRawSql();
+                    var_dump($query);die;
             }
         }
 
