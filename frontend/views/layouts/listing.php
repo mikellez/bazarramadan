@@ -13,13 +13,6 @@ use yii\bootstrap4\NavBar;
 AppAsset::register($this);
 ?>
 <style>
-    main {
-        background-image: url('<?= Yii::$app->params['backendUrl']?>/storage/Bazar-Sate-Background-HiRes.jpg') !important;
-        /*background-position: bottom left !important;*/
-        background-repeat: no-repeat !important;
-        background-size: cover !important;
-        height:100%;
-    }
 
 </style>
 <?php $this->beginPage() ?>
