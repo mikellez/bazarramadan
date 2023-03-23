@@ -248,7 +248,7 @@ $js = <<<JS
             }
             $.ajax({
                 type: 'POST',
-                url: $url"site/approve-all",
+                url: "/site/approve-all",
                 data: { 'BazarSearch[id]' : keys.join() },
                 traditional: true,
                 success: function(data) {
@@ -273,7 +273,7 @@ $js = <<<JS
             }
             $.ajax({
                 type: 'POST',
-                url: $url"site/reject-all",
+                url: "/site/reject-all",
                 data: { 'BazarSearch[id]' : keys.join() },
                 traditional: true,
                 success: function(data) {
