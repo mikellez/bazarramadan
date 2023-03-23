@@ -78,6 +78,7 @@ class Bazar extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['whatsapp_no', 'match', 'pattern' => '/^(6)(0)\d{9}/i'],
             [['user_id', 'whatsapp_no', 'pbt_location_id', 'bazar_location_id', 'status', 'active', 'created_by', 'created_at', 'updated_by', 'updated_at', 'status_by', 'status_at', 'click_count','tag'], 'integer'],
             [['shop_name', 'cover_image', 'whatsapp_no', 'pbt_location_id', 'bazar_location_id', 'created_by', 'created_at', 'updated_at', 'updated_by'], 'required', 'message'=>'{attribute} tidak boleh kosong.'],
             [['cover_imageFile'], 'required', 'on'=>'upload'],

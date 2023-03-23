@@ -244,10 +244,10 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                     'options'=>[
                         'class'=>'form-group',
                     ],
-                    'template'=> '{label}{input}<small id="mobileNoHelp" class="form-text text-muted">Contoh: 0123456789</small>{error}'
+                    'template'=> '{label}{input}<small id="mobileNoHelp" class="form-text text-muted">Contoh: 60123456789</small>{error}'
                 ])
                 ->label('Nombor Telefon (whatsapp) untuk pelanggan membuat tempahan')
-                ->textInput([ 'autofocus' => true, 'placeholder'=>'']) ?>
+                ->textInput([ 'autofocus' => true, 'placeholder'=>'60123456789']) ?>
 
             </div>
         </div>
