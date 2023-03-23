@@ -30,7 +30,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         ]); ?>  
 
         <br/>
-        <h4 class="text-muted">Cari juadah bazar Ramadan di seluruh Selangor</h4>
+        <h4 class="text-white">Cari juadah bazar Ramadan di seluruh Selangor</h4>
         <br/>
         <div class="" style="border-radius: 10px; padding-top: 16px; box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);background-color: #fff;">
         <div class="row">
@@ -85,6 +85,9 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                 <?= $form->field($model, 'text', [
                     'options'=>[
                         'class'=>'search-field',
+                    ],
+                    'inputOptions'=>[
+                        'class'=>'form-control text-center'
                     ],
                     'template'=>'
                         <div class="input-group mb-3">

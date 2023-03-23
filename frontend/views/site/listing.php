@@ -68,6 +68,9 @@ use kartik\depdrop\DepDrop;
 			'options'=>[
 				'class'=>'search-field',
 			],
+			'inputOptions'=>[
+                'class'=>'form-control text-center'
+			],
 			'template'=>'
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
