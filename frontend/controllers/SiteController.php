@@ -363,6 +363,7 @@ class SiteController extends Controller
 
         $this->layout = 'listing';
         return $this->render('listing', [
+            'model' => $model,
             'models' => $models,
             'searchModel' => $model,
             'dataProvider' => $dataProvider,
@@ -377,7 +378,7 @@ class SiteController extends Controller
             ->where(['bazar.id'=>$id])
             ->one();
 
-        $this->layout = 'listing';
+        $this->layout = 'listing-detail';
         return $this->render('listing-detail', [
             'model' => $model
         ]);

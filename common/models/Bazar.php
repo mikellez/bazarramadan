@@ -155,6 +155,11 @@ class Bazar extends \yii\db\ActiveRecord
         return ArrayHelper::map(PbtLocation::find()->asArray()->all(), 'id', 'name');
     }
 
+    public static function getPbtLocationDetail()
+    {
+        return ArrayHelper::map(PbtLocation::find()->asArray()->all(), 'id', 'detail');
+    }
+
     public static function getBazarLocationList($id)
     {
         return BazarLocation::find()->where(['pbt_location_id'=>$id])->asArray()->all();

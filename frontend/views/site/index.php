@@ -19,9 +19,9 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         </h1>
         <!--<h1 class="site-heading display-4">Bazar Ramadan</h1>-->
 
-        <div class="lead mb-3">
+        <!--<div class="lead mb-3">
             <img src="<?=Yii::$app->params['backendUrl'].'/storage/platselangor_logo@2x.png'?>" width="200px"/>
-        </div>
+        </div>-->
 
         <?php $form = ActiveForm::begin([
             'id' => 'search-form',
@@ -45,7 +45,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                 ])
                 ->label(false)
                 ->widget(Select2::classname(), [
-                    'data' => \common\models\Bazar::getPbtLocationList(),
+                    'data' => \common\models\Bazar::getPbtLocationDetail(),
                     'options' => ['placeholder' => 'Seluruh selangor'],
                     'pluginOptions' => [
                         'allowClear' => true,
@@ -102,7 +102,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
 
             </div>
             <div class="col-lg-2 col-md-12">
-            <?= Html::submitButton('Cari', ['class' => 'btn btn-sm btn-success', 'style'=>'background: #f37a20; border-color: #f37a20; border-radius: 20px; width: 100px; height: 37px;', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('Cari', ['class' => 'btn btn-sm btn-success', 'style'=>'background: #f37a20; border-color: #f37a20; border-radius: 20px; width: 100px; height: 37px; margin-bottom: 10px;', 'name' => 'login-button']) ?>
 
             </div>
         </div>
