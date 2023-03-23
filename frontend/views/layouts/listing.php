@@ -14,10 +14,11 @@ AppAsset::register($this);
 ?>
 <style>
     main {
-        background-image: url(http://localhost:8081/storage/home_bg.jpeg);
-        background-position: bottom left;
-        background-repeat: no-repeat;
-        background-size: cover;
+        background-image: url('<?= Yii::$app->params['backendUrl']?>/storage/Bazar-Sate-Background-HiRes.jpg') !important;
+        /*background-position: bottom left !important;*/
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        height:100%;
     }
 
 </style>
