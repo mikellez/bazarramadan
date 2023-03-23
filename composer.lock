@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cbda32eeb44cf2979495fcee96f9b27",
+    "content-hash": "0541bc227de5ac3cab11c04f75dd0c00",
     "packages": [
         {
             "name": "2amigos/yii2-croppie-widget",
@@ -291,6 +291,24 @@
             ]
         },
         {
+            "name": "bower-asset/owl-carousel2",
+            "version": "2.3.4",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:OwlFonk/OwlCarousel2.git",
+                "reference": "af851f9b567630d115930abd5480ffebccc72372"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OwlFonk/OwlCarousel2/zipball/af851f9b567630d115930abd5480ffebccc72372",
+                "reference": "af851f9b567630d115930abd5480ffebccc72372"
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.8.3"
+            },
+            "type": "bower-asset"
+        },
+        {
             "name": "bower-asset/punycode",
             "version": "v1.3.2",
             "source": {
@@ -458,6 +476,27 @@
             "time": "2018-03-26T11:24:36+00:00"
         },
         {
+            "name": "daneden/animate.css",
+            "version": "3.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ange187/animate.css.git",
+                "reference": "79a73464c3424b4f17a64d78092800d676e25b25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ange187/animate.css/zipball/79a73464c3424b4f17a64d78092800d676e25b25",
+                "reference": "79a73464c3424b4f17a64d78092800d676e25b25",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "support": {
+                "source": "https://github.com/ange187/animate.css/tree/master"
+            },
+            "time": "2017-04-21T12:02:21+00:00"
+        },
+        {
             "name": "doctrine/deprecations",
             "version": "v1.0.0",
             "source": {
@@ -577,6 +616,58 @@
                 }
             ],
             "time": "2022-12-14T08:49:07+00:00"
+        },
+        {
+            "name": "dominus77/yii2-owl-carousel-2",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dominus77/yii2-owl-carousel-2.git",
+                "reference": "d7134af173afb1f2670be1c877c56de497712cb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dominus77/yii2-owl-carousel-2/zipball/d7134af173afb1f2670be1c877c56de497712cb9",
+                "reference": "d7134af173afb1f2670be1c877c56de497712cb9",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/owl-carousel2": "^2.3",
+                "daneden/animate.css": "^3.5",
+                "yiisoft/yii2": "~2.0"
+            },
+            "require-dev": {
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "dominus77\\owlcarousel2\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Schevchenko",
+                    "email": "ivanovosity@gmail.com"
+                }
+            ],
+            "description": "Renders a Owl Carousel 2 widget for Yii2.",
+            "keywords": [
+                "Dominus77",
+                "extension",
+                "widget",
+                "yii2",
+                "yii2-owl-carousel-2"
+            ],
+            "support": {
+                "issues": "https://github.com/Dominus77/yii2-owl-carousel-2/issues",
+                "source": "https://github.com/Dominus77/yii2-owl-carousel-2/tree/v1.0.4"
+            },
+            "time": "2021-07-10T11:36:41+00:00"
         },
         {
             "name": "egulias/email-validator",

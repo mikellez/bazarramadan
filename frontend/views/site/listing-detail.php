@@ -10,7 +10,7 @@ $carousel_item = [];
 	?>
 <?php endforeach;?>
 <div class="text-center mt-5" style="position:relative;">
-	<div 
+	<!--<div 
 		class="" 
 		style="
 			position: absolute;
@@ -19,15 +19,55 @@ $carousel_item = [];
 			width: 100%;
 			height: 100%;
 			"
-	></div>
+	></div>-->
 	<?php 
-	echo Carousel::widget([
+	/*echo Carousel::widget([
 		'items' => $carousel_item,
 		'options'=> [
 			'style'=>'width:100%; position:relative;'
 		]
-	]);
+	]);*/
 	?>
+	<?php \dominus77\owlcarousel2\WrapCarousel::begin([
+    'theme' => \dominus77\owlcarousel2\Carousel::THEME_GREEN, // THEME_DEFAULT, THEME_GREEN
+    'tag' => 'div', // container tag name, default div
+    //'containerOptions' => [/* ... */], // container html options
+    'clientOptions' => [
+        'loop' => true,
+        'margin' => 10,
+        'nav' => true,
+		'autoplay' => true,
+        'autoplayTimeout' => 3000,
+        'autoplayHoverPause' => true,
+        'responsive' => [
+            0 => [
+                'items' => 1,
+            ],
+            600 => [
+                'items' => 3,
+            ],
+            1000 => [
+                'items' => 5,
+            ],
+        ],
+    ],
+	'clientScript' => new \yii\web\JsExpression("
+		$('.play').on('click',function(){
+			owl.trigger('play.owl.autoplay',[3000])
+		})
+		$('.stop').on('click',function(){
+			owl.trigger('stop.owl.autoplay')
+		})
+	"),
+]); ?>
+
+    <!-- begin Items -->
+	<?php foreach($carousel_item as $item):?>
+		<?php echo $item;?>
+	<?php endforeach;?>
+    <!-- end Items -->
+
+<?php \dominus77\owlcarousel2\WrapCarousel::end() ?>
 </div>
 <div class="d-flex justify-content-between mt-5">
 	<h2><?= $model->shop_name?></h2> 
