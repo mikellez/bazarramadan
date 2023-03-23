@@ -84,7 +84,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'search';
+        $this->layout = 'index';
         $model = new SearchForm();
 
         return $this->render('index', [
