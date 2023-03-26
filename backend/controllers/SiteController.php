@@ -113,7 +113,9 @@ class SiteController extends Controller
         $model->status = $model::STATUS_REJECT;
         $model->status_by = Yii::$app->user->id;
         $model->status_at = time();
-        $model->save();
+        if(!$model->save()) {
+            var_dump($model->getErrors());die;
+        }
 
 		$searchModel = new BazarSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -124,6 +126,31 @@ class SiteController extends Controller
         Yii::$app->session->setFlash('success', '
             <div class="mt-3 alert alert-danger" role="alert">
                 <p><b>Rejected!</b> Bazar is rejected for '.$model->shop_name.'!</p>
+            </div>
+            ');
+
+        $this->redirect('index');
+
+        /*return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);*/
+
+    }
+
+    public function actionDelete($id) {
+        $model = Bazar::findOne($id);
+        $model->delete();
+
+		$searchModel = new BazarSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
+        $dataProvider->setPagination(['pageSize' => 10]);
+		$dataProvider->query->andWhere(['=', 'active', 1]);
+
+        Yii::$app->session->setFlash('success', '
+            <div class="mt-3 alert alert-danger" role="alert">
+                <p><b>Deleted!</b> Bazar is deleted for '.$model->shop_name.'!</p>
             </div>
             ');
 
