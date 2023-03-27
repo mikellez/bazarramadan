@@ -138,14 +138,17 @@ class AddListingController extends Controller
 					}
 
 					foreach(explode(" ",$model->tagline) as $text) {
-						$modelBazarText = new BazarText;
-						$modelBazarText->bazar_id = $model->id;
-						$modelBazarText->text = $text;
-						$modelBazarText->save();
-						if (! ($flag = $modelBazarText->save())) {
-							$transaction->rollBack();
-							var_dump($modelBazarText->getErrors());
-							break;
+						if(!empty($text)) {
+							$modelBazarText = new BazarText;
+							$modelBazarText->bazar_id = $model->id;
+							$modelBazarText->text = $text;
+							$modelBazarText->save();
+							if (! ($flag = $modelBazarText->save())) {
+								$transaction->rollBack();
+								var_dump($modelBazarText->getErrors());
+								break;
+							}
+
 						}
 					}
 
