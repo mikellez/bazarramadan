@@ -257,13 +257,23 @@ class SiteController extends Controller
     public function actionDashboard()
     {
         $analysisModels = Yii::$app->db->createCommand("
-            SELECT 
-                a.code pbt_location_code, count(b.id) jumlah_peniaga, count(c.id) jumlah_berdaftar
-            FROM 
-                pbt_location a 
-            LEFT JOIN user b on b.pbt_location_id = a.id
-            LEFT JOIN bazar c on c.user_id = b.id
-            GROUP BY a.code
+            SELECT ANY_VALUE(pbt_location_code) pbt_location_code, ANY_VALUE(SUM(jumlah_peniaga)) jumlah_peniaga, ANY_VALUE(SUM(jumlah_berdaftar)) jumlah_berdaftar FROM (
+                SELECT 
+                        ANY_VALUE(a.code) pbt_location_code, ANY_VALUE(count(b.id)) jumlah_peniaga, ANY_VALUE(0) jumlah_berdaftar
+                    FROM 
+                        pbt_location a 
+                    LEFT JOIN user b on b.pbt_location_id = a.id
+                    GROUP BY pbt_location_code
+                 UNION
+                  SELECT 
+                                ANY_VALUE(a.code) pbt_location_code, ANY_VALUE(0) jumlah_peniaga, ANY_VALUE(count(b.id)) jumlah_berdaftar
+                            FROM 
+                                pbt_location a 
+                            LEFT JOIN bazar b on b.pbt_location_id = a.id
+                                GROUP BY pbt_location_code
+                            
+                            
+                ) t GROUP BY t.pbt_location_code;
         ")->queryAll();
 
         $pageModels = Yii::$app->db->createCommand("
