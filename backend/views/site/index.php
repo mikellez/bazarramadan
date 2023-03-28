@@ -44,7 +44,9 @@ $gridColumns = [
         ]
     ],
     [
-        'attribute'=>'whatsapp_no',
+        'label'=> 'No IC',
+        'attribute'=>'user_id',
+        'value'=> 'user.ic_no',
         'headerOptions' => [
             'class'=>'text-center'
         ],
