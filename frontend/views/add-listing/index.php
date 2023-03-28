@@ -81,7 +81,10 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                         'msgImageHeightSmall'=>'Ketinggian fail imej "{name}" mestilah sekurang-kurangnya {size} px (dikesan {dimension} px).
                         di mana:',
                         'msgImageWidthLarge'=>'Lebar fail imej "{name}" tidak boleh melebihi {size} px (dikesan {dimension} px).',
-                        'msgImageHeightLarge'=>'Ketinggian of image file "{name}" cannot exceed {size} px (detected {dimension} px).'
+                        'msgImageHeightLarge'=>'Ketinggian of image file "{name}" cannot exceed {size} px (detected {dimension} px).',
+                        'fileActionSettings'=> [
+                            'indicatorNew'=>''
+                        ]
                     ]
                 ])
 
@@ -228,7 +231,11 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                         'msgImageHeightSmall'=>'Ketinggian fail imej "{name}" mestilah sekurang-kurangnya {size} px (dikesan {dimension} px).
                         di mana:',
                         'msgImageWidthLarge'=>'Lebar fail imej "{name}" tidak boleh melebihi {size} px (dikesan {dimension} px).',
-                        'msgImageHeightLarge'=>'Ketinggian of image file "{name}" cannot exceed {size} px (detected {dimension} px).'
+                        'msgImageHeightLarge'=>'Ketinggian of image file "{name}" cannot exceed {size} px (detected {dimension} px).',
+                        'fileActionSettings'=> [
+                            'indicatorNew'=>''
+                        ]
+
                     ],
                 ]);
                 CroppieWidget::widget(['id' => 'test-widget', 'clientOptions' => ['enableExif']]);
@@ -414,9 +421,10 @@ $js = <<<JS
                 return;
             }
             let files = this.files;
+            $(".croppie-container").croppie('destroy');
 
             Object.keys(files).forEach(i => {
-                $('#crop_coverimage_container'+i).croppie('destroy');
+                //$('#crop_coverimage_container'+i).croppie('destroy');
 
                 let div = document.createElement("div");
                 div.id = "crop_coverimage_container"+i;
@@ -505,9 +513,10 @@ $js = <<<JS
                 return;
             }
             let files = this.files;
+            $(".croppie-container").croppie('destroy');
 
             Object.keys(files).forEach(i => {
-                $('#crop_container'+i).croppie('destroy');
+                //$('#crop_container'+i).croppie('destroy');
 
                 let div = document.createElement("div");
                 div.id = "crop_container"+i;
