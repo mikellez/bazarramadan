@@ -421,6 +421,8 @@ $js = <<<JS
                 return;
             }
             let files = this.files;
+
+
             $(".croppie-container").croppie('destroy');
 
             Object.keys(files).forEach(i => {
@@ -513,6 +515,17 @@ $js = <<<JS
                 return;
             }
             let files = this.files;
+            // call them as such; files[0].size will get you the file size of the 0th file
+            for (var x in files) {
+            
+                var filesize = ((files[x].size/1024)/1024).toFixed(4); // MB
+            
+                if (files[x].name != "item" && typeof files[x].name != "undefined" && filesize >= 2) { 
+                    alert('Maaf, fail maksimum 2 MB!');
+                    this.files = [];
+                    return false;
+                }
+            }
             $(".croppie-container").croppie('destroy');
 
             Object.keys(files).forEach(i => {
