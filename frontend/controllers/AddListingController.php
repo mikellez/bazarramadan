@@ -156,7 +156,7 @@ class AddListingController extends Controller
 						foreach ($modelUploadForm->imageFile as $value) {
 							$modelBazarImage = new BazarImage;
 							$modelBazarImage->bazar_id = $model->id;
-							$basePath =  Yii::getAlias('/'.time().'_'.$value->name);
+							$basePath =  Yii::getAlias('/'.time().'_'.uniqid().'_'.$value->name);
 							$fullPath = Yii::getAlias('@backend/web/storage/uploads'.$basePath);
 							$dir = dirname($fullPath);
 							if(!FileHelper::createDirectory($dir) | !$value->saveAs($fullPath)) {

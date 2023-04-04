@@ -148,7 +148,7 @@ class Bazar extends \yii\db\ActiveRecord
 
     public static function getTagList()
     {
-        return ArrayHelper::map(Tag::find()->asArray()->all(), 'id', 'name');
+        return ArrayHelper::map(Tag::find()->asArray()->orderBy(['name'=>'ASC'])->all(), 'id', 'name');
     }
 
     public static function getPbtLocationList()

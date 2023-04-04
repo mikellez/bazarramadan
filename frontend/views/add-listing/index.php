@@ -82,9 +82,9 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                         di mana:',
                         'msgImageWidthLarge'=>'Lebar fail imej "{name}" tidak boleh melebihi {size} px (dikesan {dimension} px).',
                         'msgImageHeightLarge'=>'Ketinggian of image file "{name}" cannot exceed {size} px (detected {dimension} px).',
-                        'fileActionSettings'=> [
+                        /*'fileActionSettings'=> [
                             'indicatorNew'=>''
-                        ]
+                        ]*/
                     ]
                 ])
 
@@ -232,9 +232,9 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                         di mana:',
                         'msgImageWidthLarge'=>'Lebar fail imej "{name}" tidak boleh melebihi {size} px (dikesan {dimension} px).',
                         'msgImageHeightLarge'=>'Ketinggian of image file "{name}" cannot exceed {size} px (detected {dimension} px).',
-                        'fileActionSettings'=> [
+                        /*'fileActionSettings'=> [
                             'indicatorNew'=>''
-                        ]
+                        ]*/
 
                     ],
                 ]);
@@ -421,7 +421,7 @@ $js = <<<JS
                 return;
             }
             let files = this.files;
-            $(".croppie-container").croppie('destroy');
+            //$(".croppie-container").croppie('destroy');
 
             Object.keys(files).forEach(i => {
                 //$('#crop_coverimage_container'+i).croppie('destroy');
@@ -513,7 +513,7 @@ $js = <<<JS
                 return;
             }
             let files = this.files;
-            $(".croppie-container").croppie('destroy');
+            //$(".croppie-container").croppie('destroy');
 
             Object.keys(files).forEach(i => {
                 //$('#crop_container'+i).croppie('destroy');
