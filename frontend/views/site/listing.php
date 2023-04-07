@@ -11,7 +11,7 @@ use kartik\depdrop\DepDrop;
 <?php $form = ActiveForm::begin([
 	'id' => 'search-form',
 	'action' => ['site/listing'],
-	'method' => 'post',
+	'method' => 'get',
 ]); ?>  
 
 <div class="mt-5 mb-5" style="border-radius: 10px; padding-top: 16px; box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);background-color: #fff;">

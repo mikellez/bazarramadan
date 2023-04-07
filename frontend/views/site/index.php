@@ -26,7 +26,7 @@ $this->title = 'Bazar Ramadan Plats Selangor';
         <?php $form = ActiveForm::begin([
             'id' => 'search-form',
             'action' => ['site/listing'],
-            'method' => 'post',
+            'method' => 'get',
         ]); ?>  
 
         <br/>

@@ -316,18 +316,18 @@ class SiteController extends Controller
             ->where(['=', 'status', Bazar::STATUS_APPROVE])
             ->groupBy(['bazar.id']);
         
-        if(Yii::$app->request->post()) {
-            if($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if(Yii::$app->request->get()) {
+            if($model->load(Yii::$app->request->get()) && $model->validate()) {
 
                 $textArr = explode(" ", $model->text);
 
-                $search = Yii::$app->request->post('SearchForm');
+                $search = Yii::$app->request->get('SearchForm');
 
                 if(isset($search['pbt_location_id']) && $search['pbt_location_id'] && $search['pbt_location_id'] != "") {
-                    $query = $query->andWhere(['=', 'bazar.pbt_location_id', Yii::$app->request->post('SearchForm')['pbt_location_id']]);
+                    $query = $query->andWhere(['=', 'bazar.pbt_location_id', Yii::$app->request->get('SearchForm')['pbt_location_id']]);
                 }
                 if(isset($search['bazar_location_id']) && $search['bazar_location_id'] && $search['bazar_location_id'] != "") {
-                    $query = $query->andWhere(['=', 'bazar.bazar_location_id', Yii::$app->request->post('SearchForm')['bazar_location_id']]);
+                    $query = $query->andWhere(['=', 'bazar.bazar_location_id', Yii::$app->request->get('SearchForm')['bazar_location_id']]);
                 }
 
                 if($textArr[0]) {
