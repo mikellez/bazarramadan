@@ -13,7 +13,8 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-frontend',
+		'csrfParam' => '_csrf-frontend',
+		  'baseUrl' => '',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -47,17 +48,6 @@ return [
             'class'=> \common\i18n\Formatter::class,
             'datetimeFormat' => 'php:d/m/Y H:i'
         ],
-    ],
-    'modules' => [
-    'gridview' =>  [
-            'class' => '\kartik\grid\Module',
-            //'bsVersion' => 4
-            // enter optional module parameters below - only if you need to  
-            // use your own export download action or custom translation 
-            // message source
-            // 'downloadAction' => 'gridview/export/download',
-            // 'i18n' => []
-        ]
     ],
     'params' => $params,
 ];

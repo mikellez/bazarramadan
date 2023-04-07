@@ -1,0 +1,77 @@
+AddDefaultCharset UTF-8
+
+Options FollowSymLinks
+DirectoryIndex index.php index.html
+RewriteEngine on
+
+RewriteRule /\. - [L,F]
+
+# define the app environment variable
+RewriteCond %{REQUEST_URI} !^/((frontend|backend)/web|admin)
+RewriteRule ^ - [E=APP:frontend]
+RewriteCond %{REQUEST_URI} (?!^/backend/web)^/admin
+RewriteRule ^ - [E=APP:backend]
+
+# rewrite the URI of the frontend app
+RewriteCond %{ENV:APP} =frontend
+RewriteRule ^ frontend/web%{REQUEST_URI}
+# if a directory or a file exists, use the request directly
+# otherwise forward the request to index.php
+RewriteCond %{ENV:APP} =frontend
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ frontend/web/index.php [L]
+
+# redirect to the URL without a trailing slash (uncomment if necessary)
+#RewriteRule ^admin/$ /admin [L,R=301]
+
+# rewrite the URI of the backend app
+RewriteCond %{ENV:APP} =backend
+RewriteRule ^admin/?(.*)$ backend/web/$1
+# if a directory or a file exists, use the request directly
+# otherwise forward the request to index.php
+RewriteCond %{ENV:APP} =backend
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ backend/web/index.php [L]
+
+# handle a directory trailing slash, redirect to the initial URI instead the rewritten one
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [L,R=301]
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php8_module>
+   php_flag display_errors Off
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 128M
+   php_value post_max_size 32M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php80"
+   php_value upload_max_filesize 25M
+   php_flag zlib.output_compression Off
+</IfModule>
+<IfModule lsapi_module>
+   php_flag display_errors Off
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 128M
+   php_value post_max_size 32M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php80"
+   php_value upload_max_filesize 25M
+   php_flag zlib.output_compression Off
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php80” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php80 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

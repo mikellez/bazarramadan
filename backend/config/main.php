@@ -16,9 +16,14 @@ return [
              'class' => '\kartik\grid\Module'
         ]
     ],
+    'homeUrl' => '/admin',
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-backend',
+		'csrfParam' => '_csrf-backend',
+		'csrfCookie' => [
+		    'httpOnly' => true,
+	    ],
+	    'baseUrl' => '/admin',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -27,7 +32,7 @@ return [
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+		'name' => 'advanced-backend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

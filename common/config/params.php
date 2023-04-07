@@ -6,5 +6,5 @@ return [
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
-	'backendUrl' => 'http://localhost:8081',
+	'backendUrl' => 'https://bazarramadan.platselangor.com/admin',
 ];

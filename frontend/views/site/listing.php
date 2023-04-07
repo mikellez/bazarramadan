@@ -116,7 +116,7 @@ $colsCount = 3;
 		'layout' => '{items}{pager}',
 		'beforeItem' => function ($model, $key, $index, $widget) use ($colsCount) {
 			if ($index % $colsCount === 0) {
-				return "<div class='row'>";
+				return "<div class='row text-center'>";
 			}
 		},
 		'afterItem' => function ($model, $key, $index, $widget) use ($colsCount) {
@@ -132,7 +132,7 @@ $colsCount = 3;
 			 'next' => '.next a',
 			 'paginationSelector' => '.list-view .pagination',
 			 'triggerText' => Yii::t('app', 'Show more'),
-			 'triggerTemplate' => '<span class="reveal-btn btn btn-sm btn-outline-primary" style="margin-top: 0%; margin-left: 50%;">{text}</span>',
+			 'triggerTemplate' => '<div class="col-sm-12 col-md-12"><span class="reveal-btn btn btn-sm btn-outline-primary" style="height: 33px;">{text}</span></div>',
 			 'noneLeftText' => '',
 			 'noneLeftTemplate' => '',
 			 'spinnerSrc' => '',
@@ -151,7 +151,7 @@ $colsCount = 3;
 			 'linkPagerOptions'     => [
 				  'class' => 'pagination',
 			 ],
-			 'linkPagerWrapperTemplate' => '<div class="button-news-more" style="margin-top: 25px; margin-left: 47%;"><div class="wrapper"><div class="paging">{pager}</div></div></div>',
+			 'linkPagerWrapperTemplate' => '<div class="col-sm-12 col-md-12 button-news-more mt-3" style=""><div class="wrapper"><div class="paging">{pager}</div></div></div>',
 			 'eventOnPageChange' => 'function() {{{ias}}.hidePagination();}',
 			 'eventOnReady' => 'function() {{{ias}}.restorePagination();}',
 		],

@@ -659,7 +659,14 @@ $js = <<<JS
             } else {
                 $(".add-listing-nav li#form-section-maklumat-lokasi-bazar-ramadan-nav").removeClass("active");
             }
-        });*/
+	});*/
+
+	window.initSelect2Loading = function(id, optVar){
+		initS2Loading(id, optVar)
+	};
+	window.initSelect2DropStyle = function(id, kvClose, ev){
+		initS2Change($('#'+id)) // CHANGE HERE
+	};
 
     });  
 
