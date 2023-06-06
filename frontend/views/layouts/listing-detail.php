@@ -14,7 +14,7 @@ AppAsset::register($this);
 ?>
 <style>
     main {
-        background-image: url(http://localhost:8081/storage/home_bg.jpeg);
+	/*background-image: url(http://localhost:8081/storage/home_bg.jpeg);*/
         background-position: bottom left;
         background-repeat: no-repeat;
         background-size: cover;

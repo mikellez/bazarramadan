@@ -174,13 +174,14 @@ class Bazar extends \yii\db\ActiveRecord
                 $this->cover_image =  Yii::getAlias('/'.time().'_'.$this->cover_imageFile->name);
             }
 
-            $transaction = Yii::$app->db->beginTransaction();
+	    try {
+	    $transaction = Yii::$app->db->beginTransaction();
             $ok = parent::save($runValidation, $attributeNames);
 
 
             if($ok && $this->cover_imageFile) {
-                $fullPath = Yii::getAlias('@backend/web/storage/uploads'.$this->cover_image);
-                $dir = dirname($fullPath);
+		    $fullPath = Yii::getAlias('@backend/web/storage/uploads'.$this->cover_image);
+		    $dir = dirname($fullPath);
                 if(!FileHelper::createDirectory($dir) | !$this->cover_imageFile->saveAs($fullPath)) {
                     $transaction->rollBack();
                     return false;
@@ -189,6 +190,10 @@ class Bazar extends \yii\db\ActiveRecord
 
             $transaction->commit();
             return $ok;
+	    } catch (Exception $e) {
+		    $transaction->rollBack();
+		    var_dump($e);die;
+	}
 
         } else {
             return parent::save($runValidation, $attributeNames);

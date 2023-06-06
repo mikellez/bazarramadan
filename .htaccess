@@ -39,6 +39,11 @@ RewriteRule ^ backend/web/index.php [L]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [L,R=301]
 
+<IfModule dir_module>
+    DirectoryIndex index.html
+     DirectoryIndex index.php
+</IfModule>
+
 # BEGIN cPanel-generated php ini directives, do not edit
 # Manual editing of this file may result in unexpected behavior.
 # To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)

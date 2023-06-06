@@ -166,17 +166,6 @@ $gridColumns = [
 
         <!-- /.card-header -->
         <!--<div class="card-body p-0">-->
-        <?/*= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'tableOptions'=> ['class'=>'table table-striped table-bordered table-sm table-responsive'],
-            'columns' => $gridColumns,
-            'pager' => [
-                'class' => 'yii\bootstrap4\LinkPager'
-            ],
-
-        ]); */
-        ?>
         <?php echo GridView::widget([
             'id' => 'kv-grid-demo',
             'dataProvider' => $dataProvider,

@@ -10,6 +10,8 @@ use kartik\depdrop\DepDrop;
 use wbraganca\dynamicform\DynamicFormWidget;
 use dosamigos\croppie\CroppieWidget;
 
+error_reporting(E_ALL);
+
 
 $this->title = 'Bazar Ramadan Plats Selangor';
 ?>
@@ -192,14 +194,6 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                 </div>
 
 
-                <?/*= $form->field($model, 'description', [
-                    'options'=>[
-                        'class'=>'form-group',
-                    ],
-                    'template'=> '{label}{input}'
-                ])
-                ->label('Senarai menu makanan & minuman')
-                ->textInput([ 'autofocus' => true, 'placeholder'=>'']) */?>
 
                 <?= $form->field($modelUploadForm, 'imageFile', [
                     'options'=>[
