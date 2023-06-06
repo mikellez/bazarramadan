@@ -185,6 +185,9 @@ class Bazar extends \yii\db\ActiveRecord
                     $transaction->rollBack();
                     return false;
                 }
+
+                $image=Yii::$app->image->load($fullPath);
+                $image->save($fullPath, 20);
             }
 
             $transaction->commit();

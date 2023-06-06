@@ -12,6 +12,10 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'image' => [ 
+            'class' => 'yii\image\ImageDriver',
+            'driver' => 'Imagick',  //GD or Imagick
+        ],
         'request' => [
 		'csrfParam' => '_csrf-frontend',
 		  'baseUrl' => '',

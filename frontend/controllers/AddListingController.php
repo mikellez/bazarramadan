@@ -162,6 +162,8 @@ class AddListingController extends Controller
 							if(!FileHelper::createDirectory($dir) | !$value->saveAs($fullPath)) {
 								throw new Error('Upload error!');
 							}
+							$image=Yii::$app->image->load($fullPath);
+							$image->save($fullPath, 20);
 
 							$modelBazarImage->path = $basePath;
 							if (! ($flag = $modelBazarImage->save())) {

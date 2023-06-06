@@ -68,10 +68,10 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                         'showUpload' => false,
                         'required'=>true,
                         'allowedFileExtensions'=> ["jpg", "jpeg", "png"],
-                        'minImageWidth' => 200, 
+                        /*'minImageWidth' => 200, 
                         'maxImageWidth' => 200,
                         'minImageHeight' => 200, 
-                        'maxImageHeight' => 200, 
+                        'maxImageHeight' => 200, */
                         'msgPlaceholder'=>'Pilih fail...',
                         'browseLabel'=>'Semak imbas',
                         'dropZoneTitle'=>'Seret dan lepaskan fail di sini',
@@ -214,11 +214,11 @@ $this->title = 'Bazar Ramadan Plats Selangor';
                     'pluginOptions' => [
                         'previewFileType' => 'image', 
                         'maxFileCount'=>5, 
-                        'maxFileSize'=>2800,
+                        /*'maxFileSize'=>2800,
                         'minImageWidth' => 200, 
                         'maxImageWidth' => 200,
                         'minImageHeight' => 200, 
-                        'maxImageHeight' => 200, 
+                        'maxImageHeight' => 200, */
                         'showUpload' => false,
                         'required'=>true,
                         'allowedFileExtensions'=> ["jpg", "jpeg", "png"],
@@ -415,7 +415,7 @@ $js = <<<JS
         //resetButton();
 
         //$("#uploadform-imagefile").fileinput({'showUpload':false, 'previewFileType':'any'});
-        $('#bazar-cover_imagefile').on('change', function(){
+        /*$('#bazar-cover_imagefile').on('change', function(){
             if(systemClick == true) {
                 systemClick = false;
                 return;
@@ -456,9 +456,9 @@ $js = <<<JS
                 reader.readAsDataURL(this.files[i]);
             });
             $('#uploadcoverimageModal').modal('show');
-        });
+        });*/
 
-        $('.crop_cover_image').click(function(event){
+        /*$('.crop_cover_image').click(function(event){
             const dataTransfer = new DataTransfer();
             $( "#cover_image_demo .croppie-container" ).each(function( index ) {
                 $(this).croppie('result', {
@@ -476,16 +476,8 @@ $js = <<<JS
                     .then(blob => {
                         console.log(extension)
                         const file = new File([blob], "image_"+Date.now()+'.'+extension,{ type: extensionAll })
-                        /*const file = new File(['Hello World!'], 'myFile.txt', {
-                            type: 'text/plain',
-                            lastModified: new Date(),
-                        });*/
-                        /*const dT = new DataTransfer();
-                        dT.items.add(new File(['foo'], 'programmatically_created.txt'));
-                        document.getElementById('uploadform-imagefile').files = dT.files;*/
 
                         const fileInput = document.getElementById('bazar-cover_imagefile');
-                        //const fileInput = document.querySelector('input[type="file"]');
 
                         systemClick = true;
                         dataTransfer.items.add(file);
@@ -495,21 +487,11 @@ $js = <<<JS
                         console.log(file, fileInput, fileInput.files)
                         $('#uploadcoverimageModal').modal('hide');
                     })
-                    /*$.ajax({
-                    url:"/add-listing/upload",
-                    type: "POST",
-                    data:{"image": response},
-                    success:function(data)
-                    {
-                        $('#uploadimageModal').modal('hide');
-                        $('#uploaded_image').html(data);
-                    }
-                    });*/
                 })
             });
-        });
+        });*/
 
-        $('#uploadform-imagefile').on('change', function(){
+        /*$('#uploadform-imagefile').on('change', function(){
             if(systemClick == true) {
                 systemClick = false;
                 return;
@@ -560,6 +542,7 @@ $js = <<<JS
             });
             $('#uploadimageModal').modal('show');
         });
+        */
 
         async function getFile(e) {
             let url = await getCroppieResult(e);

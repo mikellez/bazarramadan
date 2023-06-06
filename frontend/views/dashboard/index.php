@@ -4,6 +4,14 @@ use yii\grid\GridView;
 
 /** @var yii\web\View $this */
 
+
+$file = str_replace("frontend", "backend", $_SERVER['DOCUMENT_ROOT'])."/storage/uploads/1685373935_neom-_hjZ74lQOls-unsplash.jpg";
+if(file_exists($file)) {
+	$image=Yii::$app->image->load($file);
+    $image->save($file, 20);
+
+}
+
 $this->title = 'Senarai Bazar';
 
 $gridColumns = [
