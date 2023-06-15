@@ -3,10 +3,37 @@ use yii\bootstrap4\Carousel;
 
 $carousel_item = [];
 ?>
+<style>
+.owl-carousel .owl-stage {
+	display: flex;
+}
+
+.owl-carousel .owl-item {
+	height: 250px;
+}
+.owl-carousel .owl-item img {
+	height: 250px;
+	object-fit: contain;
+}
+.lf-overlay {
+    position: absolute;
+    z-index: 3;
+    background-color: #242429;
+    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+</style>
 
 <?php foreach($model->bazarImages as $bazarImage):?>
 	<?php
-	$carousel_item[] = "<img class='' width='350' src='".Yii::$app->params['backendUrl']."/storage/uploads/".$bazarImage->path."'/>";
+	$carousel_item[] = "
+		<div>
+		<div class='lf-overlay'></div>
+		<img class=''  src='".Yii::$app->params['backendUrl']."/storage/uploads/".$bazarImage->path."'/>
+		</div>
+	";
 	?>
 <?php endforeach;?>
 <div class="text-center mt-5" style="position:relative;">
